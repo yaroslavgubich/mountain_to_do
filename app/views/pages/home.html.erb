@@ -1,2 +1,12 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+  <div class="container">
+    <h1>Welcome to MountainToDo!</h1>
+    <p> Start your journey by signing up or logging in.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim neque volutpat ac tincidunt vitae semper quis lectus nulla. Mauris augue neque gravida in fermentum et sollicitudin ac.
+    </p>
+    <% if user_signed_in? %>
+    <!-- link to a goal_path -->
+    <% else %>
+      <a href="<%= new_user_registration_path %>" class="btn btn-primary">Sign Up</a>
+      <a href="<%= new_user_session_path %>" class="btn btn-primary">Log In</a>
+    <% end %>
+  </div>

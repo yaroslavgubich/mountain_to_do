@@ -1,0 +1,19 @@
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-header">
+      <%= link_to 'MountainToDo', root_path, class: 'navbar-brand' %>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %>
+        <li>
+          <%= form_with url: destroy_user_session_path, method: :delete, local: true do %>
+            <%= submit_tag 'Logout', class: 'btn btn-link', style: 'padding: 0; color: inherit; text-decoration: none;' %>
+          <% end %>
+        </li>
+      <% else %>
+        <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+        <li><%= link_to 'Log In', new_user_session_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
