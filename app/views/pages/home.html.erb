@@ -4,7 +4,7 @@
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim neque volutpat ac tincidunt vitae semper quis lectus nulla. Mauris augue neque gravida in fermentum et sollicitudin ac.
     </p>
     <% if user_signed_in? %>
-    <!-- link to a goal_path -->
+    <% link_to goal_path %>
     <% else %>
       <a href="<%= new_user_registration_path %>" class="btn btn-primary">Sign Up</a>
       <a href="<%= new_user_session_path %>" class="btn btn-primary">Log In</a>

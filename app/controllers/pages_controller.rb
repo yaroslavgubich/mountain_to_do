@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   def home
-    # return unless user_signed_in?
+    return unless user_signed_in?
 
-    # redirect_to goals_path
+    redirect_to goals_path
   end
 end
