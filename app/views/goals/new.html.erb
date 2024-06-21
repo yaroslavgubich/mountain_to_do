@@ -1,0 +1,33 @@
+
+<!-- app/views/goals/new.html.erb -->
+
+<h1>Create a New Goal</h1>
+
+<%= form_with(model: @goal, local: true) do |form| %>
+  <% if @goal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@goal.errors.count, "error") %> prohibited this goal from being saved:</h2>
+      <ul>
+        <% @goal.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :deadline %>
+    <%= form.date_field :deadline %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Back to Goals', goals_path %>
