@@ -1,3 +1,12 @@
-<h1><%= @goal.name %></h1>
-<p><%= @goal.deadline %></p>
-<p><%= @goal.completed ? "yes" : "no" %></p>
+<h1><%= @goal.name %> Progress</h1>
+<%# <p>Start Date - <%= @goal.start_date %></p>
+<%# <p>Dead Line - <%= @goal.deadline %></p>
+<p> Completed - <%= @goal.completed ? "yes" : "no" %></p>
+<h2>Tasks:</h2>
+<ul>
+  <% @goal.tasks.each do |task| %>
+    <li>
+      <%= task.name %> - Deadline: <%= task.deadline %> - Completed: <%= task.completed ? "yes" : "no" %>
+    </li>
+  <% end %>
+</ul>

@@ -1,11 +1,30 @@
 class GoalsController < ApplicationController
   def index
-    @goals = Goal.all
+    @goals = Goal.includes(:tasks).all
+    @goals.each do |goal|
+      goal.tasks.build unless goal.tasks.any?
+    end
   end
 
   def new
     @goal = Goal.new
+    @goal.tasks.build
   end
+
+  def edit
+    @goal = Goal.includes(:tasks).find(params[:id])
+    @goal.tasks.build
+  end
+
+  def update
+    @goal = Goal.find(params[:id])
+    if @goal.update(goal_params)
+      redirect_to @goal, notice: 'Goal was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
 
   def create
     @goal = Goal.new(goal_params)
@@ -25,5 +44,5 @@ end
 private
 
 def goal_params
-  params.require(:goal).permit(:name, :deadline, :completed)
+  params.require(:goal).permit(:name, :start_date, :deadline, tasks_attributes: [:id, :name, :deadline, :completed, :_destroy])
 end
