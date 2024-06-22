@@ -1,1 +1,25 @@
 /*Custom styles for MountainToDO project */
+body {
+  display: flex;
+  justify-content: center;
+}
+
+
+/* Responsive design */
+/* if device has a touch screen */
+@media (any-pointer: coarse) {
+  /* do your own styles */
+  body {
+    width: 100%;
+  }
+}
+
+/* if device has no touch screen */
+@media (any-pointer: fine) {
+  /* do your own styles */
+  .container {
+    width: 393px;
+    height: 852px;
+    border: 1px solid gray; /* for testing pusrpose only */
+  }
+}
