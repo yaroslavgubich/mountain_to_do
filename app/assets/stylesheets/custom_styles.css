@@ -4,13 +4,22 @@ body {
   justify-content: center;
 }
 
+.landing-page {
+  background-image: url("landing_page.png");
+  background-repeat: repeat-y;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 
 /* Responsive design */
 /* if device has a touch screen */
 @media (any-pointer: coarse) {
   /* do your own styles */
-  body {
+  .container {
     width: 100%;
+    height: 100vh;
   }
 }
 
