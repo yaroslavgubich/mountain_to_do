@@ -1,18 +1,82 @@
-<h2>Forgot your password?</h2>
+<div class="container">
+  <div class="page-conteiner">
+
+    <header>
+      <div class="top-camera-gap"> </div>
+      <div class="content-center">
+        <span class="header-label ps-3">Reset password</span>
+        <span class="vertical-menu-btn" onClick="menuOption();">
+
+          <!-- Dropdown content -->
+          <div id="login_dropdown_content">
+            <ul>
+              <li>
+                <div class="content-left mt-2">
+                  <div class="img-forgot-password"></div>
+                  <a href="/users/password/new">Forgot password</a>
+                </div>
+              </li>
+              <li>
+                <div class="content-left mt-2">
+                  <div class="img-contact-us"></div>
+                  <span>Contact with us</span>
+                </div>
+              </li>
+              <li>
+                <div class="content-left mt-2">
+                  <div class="img-faq"></div>
+                  <span>FAQ</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+        </span>
+      </div>
+      <div class="footer-img-box content-center">
+        <div class="forgot-img"></div>
+      </div>
+    </header>
+
+  <section>
+    <article>
+
+      <div>
+        <div class="content-center label-text-color fs-3 fw-bold mt-5">
+          Password Reset
+        </div>
+        <div class="content-center label-text-color p-4 text-center">
+          Your new temporary password will send at your email.
+        </div>
+      </div>
+
+    </article>
+  </section>
 
 <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= f.error_notification %>
+    <div class="custom-form-label email required user_email">
+      <label class="form-label email required" for="user_email">Email <abbr title="required">*</abbr>
+      </label>
+      <input class="custom-form-field string email required" autocomplete="email" autofocus="autofocus" required="required" aria-required="true" type="email" value="" name="user[email]" id="user_email" >
+    </div>
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-  </div>
+    <div class="space-top-6rem">
+      <!-- Reset password btn -->
+      <div class="content-center btn-space-arround form-actions">
+        <input type="submit" name="commit" value="Send new password" class="cstm-btn green-btn" data-disable-with="Send new password">
+      </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
-  </div>
+      <!-- cancel button -->
+      <div class="content-center btn-space-arround">
+        <a href="/users/sign_in" class="cstm-btn gray-btn">Cancel</a>
+      </div>
+    </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<!--
+  <%= render "devise/shared/links" %>
+-->
+
+</div>
+</div>
