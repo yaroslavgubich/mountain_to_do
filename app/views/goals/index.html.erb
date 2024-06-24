@@ -4,10 +4,9 @@
   <% @goals.each do |goal| %>
     <li>
       <%= link_to goal.name, goal_path(goal) %>
-      <%= goal.deadline %>
       <%= goal.completed ? 'Completed' : 'Incomplete' %>
       <%= link_to 'Edit', edit_goal_path(goal) %>
-      <%= link_to 'Delete', goal_path(goal), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%# <%= link_to 'Delete', goal_path(goal), method: :delete, data: { confirm: 'Are you sure?' } %>
     </li>
   <% end %>
 </ul>
