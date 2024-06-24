@@ -32,6 +32,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_22_103624) do
     t.bigint "goal_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "start_date"
     t.index ["goal_id"], name: "index_tasks_on_goal_id"
   end
 
