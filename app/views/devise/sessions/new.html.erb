@@ -5,7 +5,33 @@
       <div class="top-camera-gap"> </div>
       <div class="content-center">
         <span class="header-label">Log in</span>
-        <span class="vertical-menu-btn"></span>
+        <span class="vertical-menu-btn" onClick="menuOption();">
+
+          <!-- Dropdown content -->
+          <div id="login_dropdown_content">
+            <ul>
+              <li>
+                <div class="content-left mt-2">
+                  <div class="img-forgot-password"></div>
+                  <a href="/users/password/new">Forgot password</a>
+                </div>
+              </li>
+              <li>
+                <div class="content-left mt-2">
+                  <div class="img-contact-us"></div>
+                  <span>Contact with us</span>
+                </div>
+              </li>
+              <li>
+                <div class="content-left mt-2">
+                  <div class="img-faq"></div>
+                  <span>FAQ</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+        </span>
       </div>
       <div class="footer-img-box content-center">
         <div class="login-img"></div>
@@ -13,78 +39,58 @@
     </header>
 
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="mt-3">
 
- <div class="mt-3">
-    <div>
-      <div>
-        <label class="custom-form-label" for="user_email">Email</label> <br />
+        <!-- User email field -->
+        <div>
+          <div>
+            <label class="custom-form-label" for="user_email">Email</label> <br />
+          </div>
+          <div>
+            <input class="custom-form-field" autocomplete="email" autofocus="autofocus" type="email" value="" name="user[email]" id="user_email" >
+          </div>
+        </div>
+
+        <!-- User password field -->
+        <div class="mt-5">
+          <div>
+            <label class="custom-form-label" for="user_password">Password</label>
+          </div>
+          <div>
+            <input class="custom-form-field" autocomplete="current-password" type="password" name="user[password]" id="user_password">
+          </div>
+        </div>
+
+        <div class="space-top-6rem">
+          <!-- Login button -->
+          <div class="content-center btn-space-arround form-actions">
+            <input type="submit" name="commit" value="Log in" class="cstm-btn green-btn" data-disable-with="Log in">
+          </div>
+
+          <!-- Sign up button -->
+          <div class="content-center btn-space-arround">
+            <a href="/users/sign_up" class="cstm-btn gray-btn">Sign up</a>
+          </div>
+        </div>
+
+        <!--
+        <fieldset class="mb-3 boolean optional user_remember_me">
+          <div class="form-check">
+            <input name="user[remember_me]" type="hidden" value="0" autocomplete="off">
+            <input class="form-check-input boolean optional" type="checkbox" value="1" name="user[remember_me]" id="user_remember_me">
+            <label class="form-check-label boolean optional" for="user_remember_me">Remember me</label>
+          </div>
+        </fieldset>
+        -->
+
       </div>
-      <div>
-        <input class="custom-form-field" autocomplete="email" autofocus="autofocus" type="email" value="" name="user[email]" id="user_email" >
-      </div>
-    </div>
-
-    <div class="mt-5">
-      <div>
-        <label class="custom-form-label" for="user_password">Password</label>
-      </div>
-      <div>
-        <input class="custom-form-field" autocomplete="current-password" type="password" name="user[password]" id="user_password">
-      </div>
-    </div>
-
-    <div class="space-top-6rem">
-      <div class="content-center btn-space-arround form-actions">
-        <input type="submit" name="commit" value="Log in" class="cstm-btn green-btn" data-disable-with="Log in">
-      </div>
-
-      <div class="content-center btn-space-arround">
-        <a href="/users/sign_up" class="cstm-btn gray-btn">Sign up</a>
-      </div>
-    </div>
-
-<!--
-    <fieldset class="mb-3 boolean optional user_remember_me">
-      <div class="form-check">
-        <input name="user[remember_me]" type="hidden" value="0" autocomplete="off">
-        <input class="form-check-input boolean optional" type="checkbox" value="1" name="user[remember_me]" id="user_remember_me">
-        <label class="form-check-label boolean optional" for="user_remember_me">Remember me</label>
-      </div>
-    </fieldset>
--->
-</div>
-
-<div>
-  <a href="/users/password/new">Forgot your password?</a>
-</div>
-
-<% end %>
-
-
-<!--
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
--->
-
-
+    <% end %>
   </div>
 </div>
+
+<%# <script>
+  document.getElementById("login_menu_btn").addEventListener("click", menuOption);
+</script> %>
 <!-- Worth to check -->
 <!-- <p class="alert">Invalid Email or password.</p> -->
