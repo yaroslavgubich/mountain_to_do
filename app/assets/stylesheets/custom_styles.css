@@ -95,7 +95,7 @@ input:focus {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 .img-forgot-password {
@@ -104,6 +104,16 @@ input:focus {
   height: 2rem;
   margin-right: 0.7rem;
   background-image: url("forgot_password.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.6;
+}
+
+.mountains-img {
+  width: 100%;
+  height: 10em;
+  background-image: url("Mountains.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -256,6 +266,54 @@ ul > li > div > a {
 
 .label-text-color {
   color: #3d444c;
+}
+
+.all-mountain-list {
+  margin-top: 2rem;
+  /* display: flex;
+  justify-content: center; */
+  width: 100%;
+  /* position: relative;
+  border: 1px solid gray; */
+}
+
+.all-mountain-list > ul {
+  padding: 0px;
+}
+
+.all-mountain-list > ul > li {
+  /* padding-left: 2rem; */
+  list-style-type: none;
+}
+
+.goal-container {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 2px solid #EAE8EB;
+  width: 100%;
+  height: 3rem;
+}
+
+.goal-box {
+  display: flex;
+  padding: 0px 1rem 0px 1rem;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.goal-box-menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-grow: 8;
+}
+
+.goal-label > a {
+  list-style-type: none;
+  text-decoration: none;
+  font-size: 1em;
+  font-weight:  bold;
+  color:  #3d444c;
 }
 
 
