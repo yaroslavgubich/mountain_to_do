@@ -7,6 +7,16 @@ input:focus {
   outline: 2px solid #00a499;
 }
 
+/* .notice {
+  position:absolute;
+  top: 50%;
+  margin: auto;
+  width: 90%;
+  background-color: #fff;
+  border: 2px solid #00a499;
+  border-radius: 4px;
+} */
+
 .landing-page-bg {
   background-image: url("landing_page.png");
   background-repeat: no-repeat;
