@@ -21,16 +21,14 @@ class TasksController < ApplicationController
   def show
     @Task = Task.find(params[:id])
   end
-end
 
-private
+  private
 
-def set_goal
-  @goal = Goal.find(params[:goal_id])
-end
+  def set_goal
+    @goal = Goal.find(params[:goal_id])
+  end
 
-def task_params
-  params.require(:goal).permit(:name, :deadline, :completed,)
-end
-
+  def task_params
+    params.require(:goal).permit(:name, :deadline, :completed,)
+  end
 end
