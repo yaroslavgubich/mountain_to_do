@@ -1,0 +1,9 @@
+<!-- app/views/tasks/show.html.erb -->
+<h1>Task: <%= @task.name %></h1>
+<p>Deadline: <%= @task.deadline %></p>
+<p>Completed: <%= @task.completed ? "yes" : "no" %></p>
+<p>Goal: <%= link_to @goal.name, goal_path(@goal) %></p>
+
+<%= link_to 'Edit Task',  edit_goal_path(@goal), class: 'btn btn-small' %>
+<%= link_to 'Delete Task', goal_task_path(@goal, @task), method: :delete, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-small' %>
+<%= link_to 'Back to Goal', goal_path(@goal), class: 'btn btn-small' %>
