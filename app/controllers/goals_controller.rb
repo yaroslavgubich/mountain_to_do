@@ -38,6 +38,15 @@ class GoalsController < ApplicationController
   def show
     @goal = Goal.find(params[:id])
   end
+
+  def destroy
+    @goal = Goal.find(params[:id])
+    @goal.destroy
+    respond_to do |format|
+      format.html { redirect_to goals_url, notice: 'Goal was successfully destroyed.' }
+      format.turbo_stream   # Handle Turbo Streams response
+    end
+  end
 end
 
 private
