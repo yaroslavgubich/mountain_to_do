@@ -331,13 +331,14 @@ ul > li > div > a {
 
 .add-task-btn {
   display: inline-block;
-  width: 3rem;
-  height: 3rem;
+  width: 4rem;
+  height: 4rem;
   background-image: url("add_btn.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
   opacity: 0.8;
+  margin-bottom: 40px;
 }
 
 .profile-btn {
@@ -354,7 +355,7 @@ ul > li > div > a {
 .nav-box {
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 }
 
 
