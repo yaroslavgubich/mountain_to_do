@@ -8,6 +8,7 @@ class ProfilesController < ApplicationController
   def update
     @user = current_user
     if update_user
+      bypass_sign_in(@user)
       redirect_to profile_path
     else
       render :show
