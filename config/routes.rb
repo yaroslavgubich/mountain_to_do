@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   resource :profile, only: %i[show update]
 
   resources :goals do
-    resources :tasks, only: %i[index new create show]
+    resources :tasks, only: [:edit, :update, :destroy, :create, :new, :show]
   end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
