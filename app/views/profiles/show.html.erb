@@ -1,0 +1,62 @@
+<h1>Profile</h1>
+
+<div id="profile-info">
+  <p>
+    <strong>Username:</strong>
+    <%= @user.username %>
+  </p>
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
+</div>
+
+<button id="edit-button" class="btn btn-primary">Edit Profile</button>
+
+<div id="edit-form" style="display: none;">
+  <%= form_with model: @user, url: profile_path, local: true, method: :patch do |form| %>
+    <div class="form-group">
+      <%= form.label :username, 'Change Username:' %>
+      <%= form.text_field :username, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :email, 'Change Email:' %>
+      <%= form.email_field :email, class: 'form-control' %>
+    </div>
+
+    <hr>
+
+    <h3>Change Password:</h3>
+    <div class="form-group">
+      <%= form.label :password %>
+      <%= form.password_field :password, class: 'form-control', placeholder: 'Leave blank if you don\'t want to change it' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :password_confirmation %>
+      <%= form.password_field :password_confirmation, class: 'form-control', placeholder: 'Leave blank if you don\'t want to change it' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.submit 'Update Profile', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to 'Back', root_path, class: 'btn btn-secondary' %>
+
+<script>
+  document.getElementById("edit-button").addEventListener("click", function() {
+    var editForm = document.getElementById("edit-form");
+    var profileInfo = document.getElementById("profile-info");
+    if (editForm.style.display === "none") {
+      editForm.style.display = "block";
+      profileInfo.style.display = "none";
+      this.style.display = "none";
+    } else {
+      editForm.style.display = "none";
+      profileInfo.style.display = "block";
+    }
+  });
+</script>
