@@ -50,32 +50,31 @@
         </div>
 
         <!-- All mountains list -->
-        <div class="all-mountain-list">
-          <ul>
-            <% @goals.each do |goal| %>
-            <li>
-              <div class="goal-container">
-                <div class="goal-box" id="goal_status">
-                  <span style="color:#<%= goal.completed ? '00a499' : 'cd5c5c' %>; font-size: 2rem;">&#9864;</span>
-                </div>
-
-                <div class="goal-box goal-label">
-                  <%= link_to goal.name, goal_path(goal) %>
-                </div>
-
-                <div class="goal-box-menu">
-                  <%= link_to 'Edit', edit_goal_path(goal) %>
-                  <%# <%= link_to 'Delete', goal_path(goal), method: :delete, data: { confirm: 'Are you sure?' } %>
-                </div>
+        <div class="mountains-container">
+          <% @goals.each do |goal| %>
+            <div class="list-content-box">
+              <div class="list-content-claster mountain-label" style="width: 10%;">
+                <span style="color:#<%= goal.completed ? '00a499' : 'D3D3D3' %>; font-size: 2rem;">&#9864;</span>
               </div>
-            </li>
-            <% end %>
-          </ul>
+
+              <div class="list-content-claster mountain-label" style="width: 75%">
+                <%= link_to goal.name, goal_path(goal) %>
+              </div>
+
+              <div class="list-content-claster mountan-menu" style="width: 10%;">
+                <%= link_to 'Edit', edit_goal_path(goal) %>
+                <%# <%= link_to 'Delete', goal_path(goal), method: :delete, data: { confirm: 'Are you sure?' } %>
+              </div>
+            </div>
+          <% end %>
         </div>
 
-
-  <%= link_to 'New Goal', new_goal_path, class: 'btn btn-primary' %>
       </article>
     </section>
+
+    <footer>
+
+    </footer>
+  <%= link_to 'New Goal', new_goal_path, class: 'btn btn-primary' %>
 </div>
 </div>
