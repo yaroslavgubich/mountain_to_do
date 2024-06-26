@@ -7,7 +7,7 @@ class ProfilesController < ApplicationController
 
   def update
     @user = current_user
-    if @user.update(user_params)
+    if update_user
       redirect_to profile_path
     else
       render :show
@@ -18,5 +18,13 @@ class ProfilesController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation)
+  end
+
+  def update_user
+    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+      @user.update(user_params.except(:password, :password_confirmation))
+    else
+      @user.update(user_params)
+    end
   end
 end
