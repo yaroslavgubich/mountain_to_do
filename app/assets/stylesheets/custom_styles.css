@@ -1,0 +1,396 @@
+/*Custom styles for MountainToDO project */
+body {
+  background-color: #fff;
+}
+
+input:focus {
+  outline: 2px solid #00a499;
+}
+
+/* .notice {
+  position:absolute;
+  top: 50%;
+  margin: auto;
+  width: 90%;
+  background-color: #fff;
+  border: 2px solid #00a499;
+  border-radius: 4px;
+} */
+
+.landing-page-bg {
+  background-image: url("landing_page.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.page-container {
+  position: relative;
+  height: 100%;
+}
+
+#header {
+  height: 100px;
+  position: relative;
+  top: 5%;
+}
+
+#page-content {
+  position: relative;
+  height: auto;
+  top: 12%;
+}
+
+#footer {
+  width: 100%;
+  position: absolute;
+  bottom: 2%;
+}
+
+.content-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.landing-page-logo {
+  width: 80%;
+  height: 8em;
+  background-image: url("MountainTODO_logo.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.login-img {
+  width: 100%;
+  height: 10em;
+  background-image: url("Login_shoe.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.6;
+}
+
+.sign-up-img {
+  width: 100%;
+  height: 10em;
+  background-image: url("newShoes.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.6;
+}
+
+.forgot-img {
+  width: 100%;
+  height: 10em;
+  background-image: url("whereshooes.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.8;
+}
+
+.img-forgot-password {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.7rem;
+  background-image: url("forgot_password.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.6;
+}
+
+.mountains-img {
+  width: 100%;
+  height: 10em;
+  background-image: url("Mountains.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.8;
+}
+
+.img-contact-us {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.7rem;
+  background-image: url("contact_us.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.8;
+}
+
+.img-faq {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.7rem;
+  background-image: url("user_question.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.8;
+}
+
+.responsive-text {
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 1em;
+  text-align: center;
+  text-align: justify;
+  color: #3D444C;
+}
+
+.btn-space-arround {
+  margin: 1em 0px 1em 0px;
+}
+
+.cstm-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  border-width: 0px !important;
+  width: 100%;
+  height: 2em;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+}
+
+.green-btn {
+  background-color: #00a499;
+}
+
+.gray-btn {
+  background-color: #3D444C;
+}
+
+.vertical-menu-btn {
+  display:inline-block;
+  position:relative;
+  width: 1.5em;
+  height: 1.5em;
+  background-image: url("vertical_menu_button.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.header-label {
+  display: inline-block;
+  margin: auto;
+  /* padding-left: 43%; */
+  /* padding-right: 32%; */
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #3D444C;
+}
+
+.top-camera-gap {
+  width: 100%;
+  height: 3em;
+}
+
+.footer-img-box {
+  width: 100%;
+  height: 11em;
+}
+
+.custom-form-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #3d444c;
+  margin-top: 4px;
+  /* margin-left: 8px; */
+}
+
+.custom-form-field {
+  width: 100%;
+  height: 3rem;
+  border: 1px solid #D3D3D3;
+  border-radius: 4px;
+  background-color: #EAE8EB;
+  padding: 0 10px 0 10px;
+  /* margin: 0 8px; */
+}
+
+.space-top-6rem {
+  margin-top: 6rem;
+}
+
+#login_dropdown_content {
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  border: 1px solid #3d444c;
+  color: #3d444c;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 1.2em;
+  font-weight: bold;
+  min-width: 244px;
+  padding: 16px;
+  z-index: 1;
+}
+
+#login_dropdown_content > ul {
+  padding: 0px;
+}
+
+#login_dropdown_content > ul > li {
+  list-style-type: none;
+  margin: 1.4rem 0px;
+  padding: 0px;
+}
+
+ul > li > div > a {
+  text-decoration: none;
+  color: #3d444c;
+}
+
+.label-text-color {
+  color: #3d444c;
+}
+
+.mountains-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.list-content-box {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 2px solid #EAE8EB;
+}
+
+.list-content-claster {
+  display: flex;
+  width: 31%;
+  align-items: center;
+}
+
+.mountan-menu {
+  justify-content: flex-end;
+}
+
+.mountain-label > a {
+  text-decoration: none;
+  color: #3d444c;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.mountan-menu > a {
+  text-decoration: none;
+  color: #D3D3D3;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 113px;
+}
+
+.all-mountains-btn {
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  background-image: url("icons8-document-folder-64.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.4;
+}
+
+.add-task-btn {
+  display: inline-block;
+  width: 4rem;
+  height: 4rem;
+  background-image: url("add_btn.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.8;
+  margin-bottom: 40px;
+}
+
+.profile-btn {
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  background-image: url("icons8-male-user-50.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.4;
+}
+
+.nav-box {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+
+/* Responsive design */
+/* if device has a touch screen */
+@media (any-pointer: coarse) {
+  /* do your own styles */
+  body {
+    display: flex;
+    justify-content: center;
+  }
+
+  .container {
+    width: 100%;
+    height: 100vh;
+    min-width: 240px;
+  }
+}
+
+/* if device has no touch screen */
+@media (any-pointer: fine) {
+  /* do your own styles */
+  html {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    min-width: 320px;
+    min-height: 480px;
+  }
+
+  .container {
+    width: 393px;
+    height: 852px;
+    border: 1px solid gray; /* for testing pusrpose only */
+  }
+}
