@@ -42,15 +42,13 @@ class GoalsController < ApplicationController
   def destroy
     @goal = Goal.find(params[:id])
     @goal.destroy
-    respond_to do |format|
-      format.html { redirect_to goals_url, notice: 'Goal was successfully destroyed.' }
-      format.turbo_stream   # Handle Turbo Streams response
-    end
+    redirect_to goals_url, notice: 'Goal was successfully destroyed.'
   end
-end
 
-private
+  private
 
-def goal_params
-  params.require(:goal).permit(:name, :start_date, :deadline, tasks_attributes: [:id, :name, :deadline, :completed, :_destroy])
+  def goal_params
+    params.require(:goal).permit(:name, :start_date, :deadline,
+                                 tasks_attributes: %i[id name deadline completed _destroy])
+  end
 end
