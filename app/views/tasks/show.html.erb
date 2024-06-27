@@ -1,9 +1,81 @@
-<!-- app/views/tasks/show.html.erb -->
-<h1>Task: <%= @task.name %></h1>
-<p>Deadline: <%= @task.deadline %></p>
-<p>Completed: <%= @task.completed ? "yes" : "no" %></p>
-<p>Goal: <%= link_to @goal.name, goal_path(@goal) %></p>
+<div class="container">
+  <div class="page-container">
+    <header>
+      <div class="top-camera-gap"></div>
+      <div class="content-center">
+        <div class="header-label">Task: <%= @task.name %></div>
+        <span class="vertical-menu-btn" onClick="menuOption();">
+          <!-- Dropdown content -->
+          <div id="login_dropdown_content">
+            <ul>
+              <li>
+                <div class="content-left mt-2">
+                  <div class="img-contact-us"></div>
+                  <span>Contact with us</span>
+                </div>
+              </li>
+              <li>
+                <div class="content-left mt-2">
+                  <div class="img-faq"></div>
+                  <span>FAQ</span>
+                </div>
+              </li>
+              <li>
+                <div class="content-left mt-2">
+                  <%= form_with url: destroy_user_session_path, method: :delete, local: true do %>
+                    <%= submit_tag 'Logout', class: 'btn btn-link', style: 'padding: 0; color: inherit; text-decoration: none;' %>
+                  <% end %>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </span>
+      </div>
+      <div class="footer-img-box content-center">
+        <div class="mountains-img"></div>
+      </div>
+    </header>
 
-<%= link_to 'Edit Task',  edit_goal_path(@goal), class: 'btn btn-small' %>
-<%= link_to 'Delete Task', goal_task_path(@goal, @task), method: :delete, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-small' %>
-<%= link_to 'Back to Goal', goal_path(@goal), class: 'btn btn-small' %>
+    <section>
+      <article>
+        <div class="task-details">
+          <div class="list-content-box" id="list-content-box-task-show">
+            <div class="list-content-claster mountain-label" style="width: 5%;">
+              <input type="checkbox" <%= @task.completed ? 'checked' : '' %> disabled />
+            </div>
+            <div class="list-content-claster mountain-label" style="width: 95%;">
+              <p>Deadline: <%= @task.deadline.present? ? @task.deadline.strftime("%d %b %Y") : "No deadline" %></p>
+              <p>Completed: <%= @task.completed ? "yes" : "no" %></p>
+              
+            </div>
+          </div>
+          <div class="task-actions">
+            <%= link_to 'Edit Task', edit_goal_path(@goal), class: 'btn btn-small' %>
+            <%= link_to 'Delete Task', goal_task_path(@goal, @task), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-small" %>
+            <%= link_to 'Back to Goal', goal_path(@goal), class: 'btn btn-small' %>
+          </div>
+        </div>
+      </article>
+    </section>
+  </div>
+
+  <footer>
+    <div class="nav">
+      <div class="nav-box">
+        <a href="/goals">
+          <div class="all-mountains-btn"></div>
+        </a>
+      </div>
+      <div class="nav-box">
+        <a href="/goals/new">
+          <div class="add-task-btn"></div>
+        </a>
+      </div>
+      <div class="nav-box">
+        <a href="/profile">
+          <div class="profile-btn"></div>
+        </a>
+      </div>
+    </div>
+  </footer>
+</div>
