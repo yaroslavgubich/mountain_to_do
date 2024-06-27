@@ -29,7 +29,7 @@ class GoalsController < ApplicationController
     @goal = Goal.new(goal_params)
     @goal.user_id = current_user.id
     if @goal.save
-      redirect_to @goal, notice: 'Goal was successfully created.'
+      redirect_to @goal
     else
       render :new
     end
@@ -42,7 +42,7 @@ class GoalsController < ApplicationController
   def destroy
     @goal = Goal.find(params[:id])
     @goal.destroy
-    redirect_to goals_url, notice: 'Goal was successfully destroyed.'
+    redirect_to goals_url
   end
 
   private
