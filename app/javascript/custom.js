@@ -122,7 +122,7 @@ function addTask() {
     //Date and time left till task deadline
     document.getElementById("nm"+(newTaskInter-1)+"_time_left").value = timeDifferenceDays+"d "+timeDifferenceHours+"h "+timeDifferenceMins+"m"; /*test field*/
 
-    // document.getElementById("tasks-list").insertBefore(taskBox);
+    document.getElementById("create_goal_btn").addEventListener("click",newTaskCounterReset);
     }
 }
 
