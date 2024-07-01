@@ -87,23 +87,41 @@
         <div class="selection-content-box">
           <%= form.fields_for :tasks do |task_form| %>
 
+
           <!-- Goal task name -->
+          <!--
           <div class="field">
             <%= task_form.label :name %>
             <%= task_form.text_field :name %>
           </div>
+          -->
 
           <!-- Goal task deadline and add button -->
+
           <div class="field">
-            <%= task_form.label :deadline %>
+            <!-- <%= task_form.label :deadline %> -->
             <div class="two-elements">
-              <%= task_form.date_field :deadline %>
-              <button type="button" ><a href="#">Add task</a></button>
+              <!-- <%= task_form.date_field :deadline %> -->
+              <span></span>
+              <button type="button" style="margin-bottom: 8px; color: #fff; font-weight: bold;" onClick="addTask();">Add task</button>
             </div>
           </div>
 
-          <!-- list of tasks for this goal -->
 
+          <!-- list of tasks for this goal -->
+          <div id="tasks-list">
+            <div class="box-underline" id="task_nr1">
+                <div class="two-elements">
+                  <input type="date" id="nm1_dedline" name="deadline" class="new-mountain-input">
+                  <input type="text" id="nm1_time_left" name="time_left" value="1d 23h 12m" class="time-left-field" readonly>
+                </div>
+
+                <div class="two-elements">
+                  <input type="text" id="nm1_name" class="new-mountain-input" name="task_name" placeholder="Task name">
+                  <span class="del-task">Delete</span>
+                </div>
+            </div>
+          </div>
           <!--------------------------------->
 
           <% end %>
