@@ -112,13 +112,13 @@
           <div id="tasks-list">
             <div class="box-underline" id="task_nr1">
                 <div class="two-elements">
-                  <input type="date" id="nm1_dedline" name="deadline" class="new-mountain-input">
+                  <input type="date" id="nm1_deadline" name="deadline" class="new-mountain-input">
                   <input type="text" id="nm1_time_left" name="time_left" value="1d 23h 12m" class="time-left-field" readonly>
                 </div>
 
                 <div class="two-elements">
                   <input type="text" id="nm1_name" class="new-mountain-input" name="task_name" placeholder="Task name">
-                  <span class="del-task">Delete</span>
+                  <span class="del-task" onClick="deleteTask(1);">Delete</span>
                 </div>
             </div>
           </div>
@@ -133,6 +133,7 @@
     <footer>
       <div class="footer-btn">
         <div class="actions">
+          <!-- <input type="submit" name="commit" value="Create Goal" data-disable-with="Create Goal"> -->
           <%= form.submit %>
         </div>
         <div>
@@ -143,3 +144,9 @@
 
       <% end %>
   </div>
+
+<!--
+  1. Button Create Goal need add id ir onClick and call function "newTaskCounterReset()"
+  2. Create ruby code to cach array with goals and save it in to database.
+  3.
+-->

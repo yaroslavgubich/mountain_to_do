@@ -14,63 +14,107 @@ function menuOption() {
 
 // Dinamic new mountain task creation
 
-var newTaskInter = 1; /* Task interation counter */
+/* Task interation counter */
+var newTaskInter = 1;
 
 function addTask() {
-  //Task counter increment
-  newTaskInter ++;
-  // console.log("Task counter: " + newTaskInter);
-
-  // Creating new task
-  const taskBox = document.createElement("div");
-  taskBox.classList.add("box-underline");
-  taskBox.id = "task_nr"+newTaskInter;
 
 
-  // First field
-  const firstField = document.createElement("div");
-  firstField.classList.add("two-elements");
+  const firstCheckup = document.getElementById("nm"+newTaskInter+"_deadline");
+  const secondCheckup = document.getElementById("nm"+newTaskInter+"_name");
 
-  const deadlineField = document.createElement("input");
-  deadlineField.setAttribute("type", "date");
-  deadlineField.id = "nm"+newTaskInter+"_deadline";
-  deadlineField.classList.add("new-mountain-input");
+  /* Check or data entered                                  //
+  // If not entered field will get red border (indianred)   //
+  //                                                        */
+  let first_permission;
+  let second_permission;
 
-  const timeLeft = document.createElement("input");
-  timeLeft.setAttribute("type", "text");
-  timeLeft.id ="nm"+newTaskInter+"_time_left";
-  timeLeft.classList.add("time-left-field");
-  timeLeft.value = "JB Test"; /*test field*/
-  timeLeft.readOnly = true;
+  if (firstCheckup.value == "") {
+    firstCheckup.style = "border-color: indianred;";
+    first_permission = false;
+  } else {
+    firstCheckup.style = "border-color: #cecece";
+    first_permission = true;
+  }
 
-
-  // Second field
-  const secondField = document.createElement("div");
-  secondField.classList.add("two-elements");
-
-  const taskName = document.createElement("input");
-  taskName.setAttribute("type", "text");
-  taskName.id = "nm"+newTaskInter+"_name";
-  taskName.classList.add("new-mountain-input");
-  taskName.placeholder = "New Task Name";
-
-  const delBtn = document.createElement("span");
-  delBtn.classList.add("del-task");
-  delBtn.innerText = "Delete";
+  if (secondCheckup.value == "") {
+    secondCheckup.style = "border-color: indianred;";
+    second_permission = false;
+  } else {
+    secondCheckup.style = "border-color: #cecece";
+    second_permission = true;
+  }
 
 
-  // All components concatination
-  firstField.appendChild(deadlineField);
-  firstField.appendChild(timeLeft);
+  if (first_permission && second_permission) {
 
-  secondField.appendChild(taskName);
-  secondField.appendChild(delBtn);
+    //Task counter increment
+    newTaskInter ++;
+    // console.log("Task counter: " + newTaskInter);
 
-  taskBox.appendChild(firstField);
-  taskBox.appendChild(secondField);
+    // Creating new task
+    const taskBox = document.createElement("div");
+    taskBox.classList.add("box-underline");
+    taskBox.id = "task_nr"+newTaskInter;
 
-  let parrent_box = document.getElementById("tasks-list");
-  parrent_box.insertBefore(taskBox, parrent_box.firstChild);
 
-  // document.getElementById("tasks-list").insertBefore(taskBox);
+    // First field
+    const firstField = document.createElement("div");
+    firstField.classList.add("two-elements");
+
+    const deadlineField = document.createElement("input");
+    deadlineField.setAttribute("type", "date");
+    deadlineField.id = "nm"+newTaskInter+"_deadline";
+    deadlineField.classList.add("new-mountain-input");
+
+    const timeLeft = document.createElement("input");
+    timeLeft.setAttribute("type", "text");
+    timeLeft.id ="nm"+newTaskInter+"_time_left";
+    timeLeft.classList.add("time-left-field");
+    timeLeft.value = "JB Test"; /*test field*/
+    timeLeft.readOnly = true;
+
+
+    // Second field
+    const secondField = document.createElement("div");
+    secondField.classList.add("two-elements");
+
+    const taskName = document.createElement("input");
+    taskName.setAttribute("type", "text");
+    taskName.id = "nm"+newTaskInter+"_name";
+    taskName.classList.add("new-mountain-input");
+    taskName.placeholder = "New Task Name";
+
+    const delBtn = document.createElement("span");
+    delBtn.classList.add("del-task");
+    const delTaskAtribute = "deleteTask("+newTaskInter+");";
+    delBtn.setAttribute("onClick",delTaskAtribute);
+    delBtn.innerText = "Delete";
+
+
+    // All components concatination
+    firstField.appendChild(deadlineField);
+    firstField.appendChild(timeLeft);
+
+    secondField.appendChild(taskName);
+    secondField.appendChild(delBtn);
+
+    taskBox.appendChild(firstField);
+    taskBox.appendChild(secondField);
+
+    let parrent_box = document.getElementById("tasks-list");
+    parrent_box.insertBefore(taskBox, parrent_box.firstChild);
+
+    // document.getElementById("tasks-list").insertBefore(taskBox);
+    }
+}
+
+function deleteTask(target_id) {
+  alert("deleting" + target_id);
+  const delTask = document.getElementById("task_nr"+target_id);
+  delTask.remove();
+}
+
+function newTaskCounterReset() {
+  newTaskInter = 1;
 }
