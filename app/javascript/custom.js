@@ -16,16 +16,15 @@ function menuOption() {
 /* Task interation counter */
 var newTaskInter = 1;
 var tasks_ids = [];
+var tasks_list = [];
+
 
 function addTask() {
-
 
   const firstCheckup = document.getElementById("nm"+newTaskInter+"_deadline");
   const secondCheckup = document.getElementById("nm"+newTaskInter+"_name");
 
   //Claculate diference
-
-
   /* Check or data entered                                  //
   // If not entered field will get red border (indianred)   //
   //                                                        */
@@ -66,6 +65,7 @@ function addTask() {
     //Task counter increment
     newTaskInter ++;
     // console.log("Task counter: " + newTaskInter);
+
 
     // Creating new task
     const taskBox = document.createElement("div");
@@ -147,9 +147,24 @@ function deleteTask(target_id) {
   }
 }
 
+//Create list with tasks
+function newTaskList() {
+  for (inter = 1; newTaskInter >= inter; inter += 1) {
+    //
+    const task_date = document.getElementById("nm"+inter+"_deadline");
+    const task_name = document.getElementById("nm"+inter+"_name");
+
+    if ((task_date.value != null) || (task_name.value != null)) {
+      tasks_list.push(task_name.value);
+      tasks_list.push(task_date.value);
+    }
+  }
+}
+
 function newTaskCounterReset() {
+  newTaskList();
   newTaskInter = 1;
 
-  // Collect all existing tasks and save it into database for parrent Mountain
+  console.warn(tasks_list);
 
 }
