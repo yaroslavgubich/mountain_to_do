@@ -496,16 +496,16 @@ ul > li > div > a {
     height: 852px;
     border: 1px solid gray; /* for testing pusrpose only */
   }
-  /* Style for the three-dots icon */
 .three-dots-icon {
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 2rem;
   position: relative;
   margin-right: 30%;
-
+  padding-left: 20%;
+  padding-right: 20%;
 }
 
-/* Style for the dropdown menu */
+
 .dropdown-content {
   display: none;
   position: absolute;
