@@ -1,59 +1,133 @@
 <!-- app/views/goals/edit.html.erb -->
 
-<h1>Edit Mountain</h1>
+<div class="container">
+  <div class="page-conteiner">
 
-<%= form_with(model: @goal, local: true) do |form| %>
-  <% if @goal.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@goal.errors.count, "error") %> prohibited this goal from being saved:</h2>
-      <ul>
-        <% @goal.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <header>
+      <div class="top-camera-gap"> </div>
+      <div class="content-center">
+        <span class="header-label">Edit mountain</span>
+        <span class="vertical-menu-btn" onClick="menuOption();">
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+          <!-- Dropdown content -->
+          <div id="login_dropdown_content">
+            <ul>
+              <li>
+                <div class="content-left mt-2">
+                  <div class="img-contact-us"></div>
+                  <span>Contact with us</span>
+                </div>
+              </li>
+              <li>
+                <div class="content-left mt-2">
+                  <div class="img-faq"></div>
+                  <span>FAQ</span>
+                </div>
+              </li>
+              <li>
+                <div class="content-left mt-2">
+                  <%= form_with url: destroy_user_session_path, method: :delete, local: true do %>
+                    <%= submit_tag 'Logout', class: 'btn btn-link', style: 'padding: 0; color: inherit; text-decoration: none;' %>
+                  <% end %>
+                </div>
+              </li>
 
-  <div class="field">
-    <%= form.label :start_date %>
-    <%= form.date_field :start_date %>
-  </div>
+            </ul>
+          </div>
 
-  <div class="field">
-    <%= form.label :deadline %>
-    <%= form.date_field :deadline %>
-  </div>
-
- <h1>Edit Goal</h1>
-
-  <%= form.fields_for :tasks do |task_form| %>
-    <div class="task-fields">
-      <%= task_form.hidden_field :_destroy %>
-      <div class="field">
-        <%= task_form.label :name %>
-        <%= task_form.text_field :name %>
+        </span>
       </div>
-
-      <div class="field">
-        <%= task_form.label :deadline %>
-        <%= task_form.date_field :deadline %>
+      <div class="footer-img-box content-center">
+        <div class="new-mountain-img"></div>
       </div>
+    </header>
 
-      <div class="field">
+    <section>
+      <%= form_with(model: @goal, local: true) do |form| %>
+      <% if @goal.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@goal.errors.count, "error") %> prohibited this goal from being saved:</h2>
+          <ul>
+            <% @goal.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+  <!-- First input block -->
+      <div class="section-content">
+        <div class="selection-content-box">
+
+          <!-- Goal name -->
+          <div class="field">
+            <%= form.label :name %>
+            <%= form.text_field :name %>
+          </div>
+
+          <!-- Goal start date -->
+          <div class="field">
+            <%= form.label :start_date %>
+            <%= form.date_field :start_date %>
+          </div>
+
+          <!-- Goal end date -->
+          <div class="field">
+            <%= form.label :deadline %>
+            <%= form.date_field :deadline %>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <!-- Second input block -->
+      <div class="section-content">
+        <div class="selection-content-box">
+        <%= form.fields_for :tasks do |task_form| %>
+
+        <%= task_form.hidden_field :_destroy %>
+        <!-- Goal task name -->
+        <div class="field">
+          <%= task_form.label :name %>
+          <%= task_form.text_field :name %>
+        </div>
+
+        <!-- Goal task deadline and add button -->
+        <div class="field">
+          <%= task_form.label :deadline %>
+          <div class="two-elements">
+            <%= task_form.date_field :deadline %>
+            <button type="button" ><a href="#">Add task</a></button>
+          </div>
+        </div>
+
+      <div class="field" style="text-align: center;">
         <%= task_form.label :completed %>
         <%= task_form.check_box :completed %>
       </div>
+
+      <!-- list of tasks for this goal -->
+
+      <!--------------------------------->
+
+        <% end %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit 'Update Goal' %>
+    </section>
   </div>
-<% end %>
 
-<%= link_to 'Cancel', @goal %>
+  <footer>
+    <div class="footer-btn">
+      <div class="actions">
+        <%= form.submit 'Update Goal' %>
+      </div>
+      <div>
+        <button style="background-color: #3D444C !important;"> <%= link_to 'Cancel', @goal %> </button>
+      </div>
+    </div>
+  </footer>
+
+      <% end %>
+</div>

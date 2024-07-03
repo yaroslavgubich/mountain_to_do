@@ -9,8 +9,10 @@ class ProfilesController < ApplicationController
     @user = current_user
     if update_user
       bypass_sign_in(@user)
+      flash[:success] = determine_success_message
       redirect_to profile_path
     else
+      flash.now[:error] = "Failed to update profile"
       render :show
     end
   end
@@ -26,6 +28,18 @@ class ProfilesController < ApplicationController
       @user.update(user_params.except(:password, :password_confirmation))
     else
       @user.update(user_params)
+    end
+  end
+
+  def determine_success_message
+    if params[:user][:password].present?
+      "Password updated successfully"
+    elsif params[:user][:email].present?
+      "Email updated successfully"
+    elsif params[:user][:username].present?
+      "Username updated successfully"
+    else
+      "Profile updated successfully"
     end
   end
 end

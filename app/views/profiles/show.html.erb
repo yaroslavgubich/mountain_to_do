@@ -1,62 +1,139 @@
-<h1>Profile</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Page</title>
+  <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+  <div id="profile-container">
+    <% if flash[:success] %>
+      <div class="flash-message success"><%= flash[:success] %></div>
+    <% elsif flash[:error] %>
+      <div class="flash-message error"><%= flash[:error] %></div>
+    <% end %>
+    <div id="profile-info">
+      <div id="profile-header">
+        <div id="profile-title"><%= @user.username %> profile</div>
+        
+      <div id="profile-picture-container">
+        <svg id="profile-picture" xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-person-square" viewBox="0 0 16 16">
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+          <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
+        </svg>
+      </div>
+          
+      </div>
+      <div id="username-section">
+        <label for="username" id="username-label">User Name</label>
+        <div id="username-box"><%= @user.username %></div>
+      </div>
+      <div id="email-section">
+        <label for="email" id="email-label">Email address</label>
+        <div id="email-box"><%= @user.email %></div>
+      </div>
+    </div>
+    
+    <div id="edit-form" style="display: none;">
+      <!-- Username Form -->
+      <%= form_with model: @user, url: profile_path, local: true, method: :patch, html: { id: 'username-form' } do |form| %>
+        <div class="form-group">
+          <%= form.label :username, 'Change Username:' %>
+          <%= form.text_field :username, class: 'form-control', maxlength: '15' %>
+        </div>
+        <div class="form-group">
+          <%= form.submit 'Update Username', class: 'btn btn-primary', name: 'update_username' %>
+        </div>
+      <% end %>
 
-<div id="profile-info">
-  <p>
-    <strong>Username:</strong>
-    <%= @user.username %>
-  </p>
-  <p>
-    <strong>Email:</strong>
-    <%= @user.email %>
-  </p>
-</div>
+      <!-- Email Form -->
+      <%= form_with model: @user, url: profile_path, local: true, method: :patch, html: { id: 'email-form' } do |form| %>
+        <div class="form-group">
+          <%= form.label :email, 'Change Email:' %>
+          <%= form.email_field :email, class: 'form-control', id: 'email-field', required: true %>
+          <small id="email-error" style="color: red; display: none;">Please enter a valid email address.</small>
+        </div>
+        <div class="form-group">
+          <%= form.submit 'Update Email', class: 'btn btn-primary', id: 'update-email-button', name: 'update_email' %>
+        </div>
+      <% end %>
 
-<button id="edit-button" class="btn btn-primary">Edit Profile</button>
-
-<div id="edit-form" style="display: none;">
-  <%= form_with model: @user, url: profile_path, local: true, method: :patch do |form| %>
-    <div class="form-group">
-      <%= form.label :username, 'Change Username:' %>
-      <%= form.text_field :username, class: 'form-control' %>
+      <!-- Password Form -->
+      <%= form_with model: @user, url: profile_path, local: true, method: :patch, html: { id: 'password-form' } do |form| %>
+        <h3>Change Password:</h3>
+        <div class="form-group">
+          <%= form.label :password %>
+          <%= form.password_field :password, class: 'form-control', placeholder: 'your new password' %>
+        </div>
+        <div class="form-group">
+          <%= form.label :password_confirmation %>
+          <%= form.password_field :password_confirmation, class: 'form-control', placeholder: 'repeat your new password' %>
+        </div>
+        <div class="form-group">
+          <%= form.submit 'Update Password', class: 'btn btn-primary', name: 'update_password' %>
+        </div>
+      <% end %>
     </div>
 
-    <div class="form-group">
-      <%= form.label :email, 'Change Email:' %>
-      <%= form.email_field :email, class: 'form-control' %>
+    <div id="profile-buttons">
+      <button id="edit-button" class="btn btn-primary">Edit</button>
+      
+      <button id="back-button" class="btn btn-secondary">Back</button>
     </div>
+  </div>
 
-    <hr>
+  <script>
+    
+    document.getElementById("edit-button").addEventListener("click", function() {
+      const editForm = document.getElementById("edit-form");
+      const profileInfo = document.getElementById("profile-info");
+      const backButton = document.getElementById("back-button");
+      if (editForm.style.display === "none") {
+        editForm.style.display = "block";
+        profileInfo.style.display = "none";
+        this.style.display = "none";
+        backButton.style.display = "block";
+      } else {
+        editForm.style.display = "none";
+        profileInfo.style.display = "block";  
+        this.style.display = "block";
+        backButton.style.display = "none";
+      }
+    });
 
-    <h3>Change Password:</h3>
-    <div class="form-group">
-      <%= form.label :password %>
-      <%= form.password_field :password, class: 'form-control', placeholder: 'Leave blank if you don\'t want to change it' %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :password_confirmation %>
-      <%= form.password_field :password_confirmation, class: 'form-control', placeholder: 'Leave blank if you don\'t want to change it' %>
-    </div>
-
-    <div class="form-group">
-      <%= form.submit 'Update Profile', class: 'btn btn-primary' %>
-    </div>
-  <% end %>
-</div>
-
-<%= link_to 'Back', root_path, class: 'btn btn-secondary' %>
-
-<script>
-  document.getElementById("edit-button").addEventListener("click", function() {
-    var editForm = document.getElementById("edit-form");
-    var profileInfo = document.getElementById("profile-info");
-    if (editForm.style.display === "none") {
-      editForm.style.display = "block";
-      profileInfo.style.display = "none";
-      this.style.display = "none";
-    } else {
+    document.getElementById("back-button").addEventListener("click", function() {
+      const editForm = document.getElementById("edit-form");
+      const profileInfo = document.getElementById("profile-info");
+      const editButton = document.getElementById("edit-button");
       editForm.style.display = "none";
       profileInfo.style.display = "block";
-    }
-  });
-</script>
+      editButton.style.display = "block";
+      window.history.back(); // Navigate one step back in the browser history
+    });
+
+    document.getElementById("update-email-button").addEventListener("click", function(event) {
+      const emailField = document.getElementById("email-field");
+      const emailError = document.getElementById("email-error");
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!emailPattern.test(emailField.value)) {
+        emailError.style.display = "block";
+        event.preventDefault();
+      } else {
+        emailError.style.display = "none";
+      }
+    });
+
+    // Flash message auto-dismiss
+    setTimeout(() => {
+      const flashMessages = document.querySelectorAll('.flash-message');
+      flashMessages.forEach(message => {
+        message.style.transition = 'opacity 1s';
+        message.style.opacity = '0';
+        setTimeout(() => message.remove(), 1000);
+      });
+    }, 1000);
+  </script>
+</body>
+</html>
