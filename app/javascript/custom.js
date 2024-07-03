@@ -15,6 +15,7 @@ function menuOption() {
 // Dinamic new mountain task creation
 /* Task interation counter */
 var newTaskInter = 1;
+var tasks_ids = [];
 
 function addTask() {
 
@@ -122,6 +123,9 @@ function addTask() {
     //Date and time left till task deadline
     document.getElementById("nm"+(newTaskInter-1)+"_time_left").value = timeDifferenceDays+"d "+timeDifferenceHours+"h "+timeDifferenceMins+"m"; /*test field*/
 
+    // Add created tasks ID's
+    tasks_ids.push("task_nr"+(newTaskInter-1));
+
     document.getElementById("create_goal_btn").addEventListener("click",newTaskCounterReset);
     }
 }
@@ -135,9 +139,17 @@ function deleteTask(target_id) {
   } else {
     const delTask = document.getElementById("task_nr"+target_id);
     delTask.remove();
+
+    // Remove from the array;
+    tasks_ids
+    let rem_position = tasks_ids.indexOf("task_nr"+target_id);
+    delete tasks_ids[rem_position];
   }
 }
 
 function newTaskCounterReset() {
   newTaskInter = 1;
+
+  // Collect all existing tasks and save it into database for parrent Mountain
+
 }
