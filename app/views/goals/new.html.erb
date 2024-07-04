@@ -65,6 +65,7 @@
             <%= form.text_field :name %>
           </div>
 
+
           <!-- Goal start date -->
           <div class="field">
             <%= form.label :start_date %>
@@ -122,6 +123,48 @@
                 </div>
             </div>
           </div>
+
+
+          <!-- Goal start date -->
+          <div class="field">
+            <%= form.label :start_date %>
+            <%= form.date_field :start_date %>
+          </div>
+
+          <!-- Goal end date -->
+          <div class="field">
+            <%= form.label :deadline %>
+            <%= form.date_field :deadline %>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <!-- Second input block -->
+      <div class="section-content">
+        <div class="selection-content-box">
+          <%= form.fields_for :tasks do |task_form| %>
+
+          <!-- Goal task name -->
+          <div class="field">
+            <%= task_form.label :name %>
+            <%= task_form.text_field :name %>
+          </div>
+
+          <!-- Goal task deadline and add button -->
+          <div class="field">
+            <%= task_form.label :deadline %>
+            <div class="two-elements">
+              <%= task_form.date_field :deadline %>
+              <button type="button" ><a href="#">Add task</a></button>
+            </div>
+          </div>
+
+          <!-- list of tasks for this goal -->
+
+
           <!--------------------------------->
 
           <% end %>
@@ -133,14 +176,19 @@
     <footer>
       <div class="footer-btn">
         <div class="actions">
+
           <!-- <input type="submit" name="commit" value="Create Goal" data-disable-with="Create Goal"> -->
           <%= form.submit "Create Goal", id: "create_goal_btn" %>
+
+          <%= form.submit %>
+
         </div>
         <div>
           <button style="background-color: #3D444C !important;"> <a href="/goals">Cancel</a> </button>
         </div>
       </div>
     </footer>
+
 
       <% end %>
   </div>
@@ -150,3 +198,8 @@
   2. Create ruby code to cach array with goals and save it in to database.
   3.
 -->
+
+
+      <% end %>
+  </div>
+
