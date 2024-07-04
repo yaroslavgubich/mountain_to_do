@@ -52,7 +52,9 @@
         <!-- All mountains list -->
         <div class="mountains-container">
   <% @goals.each do |goal| %>
-    <div class="list-content-box">
+  <!-- stimulus -->
+    <div class="list-content-box" data-controller="tuggle">
+
       <div class="list-content-claster mountain-label" style="width: 10%;">
         <span style="color:#<%= goal.completed ? '00a499' : 'D3D3D3' %>; font-size: 2rem;">&#9864;</span>
       </div>
@@ -62,8 +64,8 @@
       </div>
 
       <div class="list-content-claster mountan-menu" style="width: 10%; position: relative;">
-        <span class="three-dots-icon" onclick="toggleDropdown(event, 'dropdown-<%= goal.id %>')">&#x22EE;</span>
-        <div id="dropdown-<%= goal.id %>" class="dropdown-content">
+        <span class="three-dots-icon" data-action="click->tuggle#toggleDropdown">&#x22EE;</span>
+        <div id="dropdown-<%= goal.id %>" class="dropdown-content" data-tuggle-target="dropdown" >
           <%= link_to 'Edit', edit_goal_path(goal) %>
           <%= link_to 'Delete', goal_path(goal), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
         </div>
@@ -71,22 +73,27 @@
     </div>
   <% end %>
 </div>
-<script>function toggleDropdown(event, id) {
-  document.querySelectorAll('.dropdown-content').forEach(function (dropdown) {
-    if (dropdown.id !== id) {
-      dropdown.classList.remove('show');
-    }
-  });
-  document.getElementById(id).classList.toggle('show');
-}
 
-window.onclick = function(event) {
-  if (!event.target.matches('.three-dots-icon')) {
-    document.querySelectorAll('.dropdown-content').forEach(function (dropdown) {
-      dropdown.classList.remove('show');
-    });
-  }
-}
+
+<script>
+// make it arror fuction 
+// function toggleDropdown(event, id) {
+//   document.querySelectorAll('.dropdown-content').forEach(function (dropdown) {
+//     if (dropdown.id !== id) {
+//       dropdown.classList.remove('show');
+//     }
+//   });
+//   document.getElementById(id).classList.toggle('show');
+// }
+
+// window.onclick = function(event) {
+//   if (!event.target.matches('.three-dots-icon')) {
+//     document.querySelectorAll('.dropdown-content').forEach(function (dropdown) {
+//       dropdown.classList.remove('show');
+//     });
+//   }
+// }
+
 </script>
 
       </article>
