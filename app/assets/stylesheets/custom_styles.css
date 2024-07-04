@@ -526,7 +526,7 @@ ul > li > div > a {
   display: block;
 }
 
-/* 
+/*
 causing problems */
 /* Responsive design */
 /* if device has a touch screen */
@@ -544,7 +544,7 @@ causing problems */
     min-width: 240px;
   }
 
-  
+
 }
 
 /* if device has no touch screen */
@@ -570,4 +570,3 @@ causing problems */
 
 
 }
-
