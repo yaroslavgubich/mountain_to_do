@@ -2,10 +2,11 @@
   <div class="page-container">
 
     <header>
-      <div class="top-camera-gap"></div>
+      <div class="top-camera-gap"> </div>
       <div class="content-center">
         <span class="header-label">New mountain</span>
         <span class="vertical-menu-btn" onClick="menuOption();">
+
           <!-- Dropdown content -->
           <div id="login_dropdown_content">
             <ul>
@@ -30,6 +31,7 @@
               </li>
             </ul>
           </div>
+
         </span>
       </div>
       <div class="footer-img-box content-center">
@@ -87,7 +89,20 @@
                 <%= task_form.label :deadline %>
                 <div class="two-elements">
                   <%= task_form.date_field :deadline %>
-                  <button type="button" onClick="addTask();">Add task</button>
+                  <button type="button" onClick="addTask();" style="margin-bottom: 8px; color: #fff; font-weight: bold;">Add task</button>
+                </div>
+              </div>
+              <!-- list of tasks for this goal -->
+              <div id="tasks-list">
+                <div class="box-underline" id="task_nr1">
+                  <div class="two-elements">
+                    <input type="date" id="nm1_deadline" name="deadline" class="new-mountain-input">
+                    <input type="text" id="nm1_time_left" name="time_left" value="" class="time-left-field" readonly>
+                  </div>
+                  <div class="two-elements">
+                    <input type="text" id="nm1_name" class="new-mountain-input" name="task_name" placeholder="Task name">
+                    <span class="del-task" onClick="deleteTask(1);">Delete</span>
+                  </div>
                 </div>
               </div>
             <% end %>
@@ -95,30 +110,10 @@
         </div>
       </section>
 
-      <section>
-        <!-- List of tasks for this goal -->
-        <div class="section-content">
-          <div class="selection-content-box">
-            <div id="tasks-list">
-              <div class="box-underline" id="task_nr1">
-                <div class="two-elements">
-                  <input type="date" id="nm1_deadline" name="deadline" class="new-mountain-input">
-                  <input type="text" id="nm1_time_left" name="time_left" class="time-left-field" readonly>
-                </div>
-                <div class="two-elements">
-                  <input type="text" id="nm1_name" class="new-mountain-input" name="task_name" placeholder="Task name">
-                  <span class="del-task" onClick="deleteTask(1);">Delete</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <footer>
         <div class="footer-btn">
           <div class="actions">
-            <%= form.submit "Create Goal", id: "create_goal_btn" %>
+            <%= form.submit "Create Goal", id: "create_goal_btn", onClick: "newTaskCounterReset()" %>
           </div>
           <div>
             <button style="background-color: #3D444C !important;">

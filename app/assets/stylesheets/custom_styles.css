@@ -460,6 +460,38 @@ ul > li > div > a {
   color: #fff;
 }
 
+
+.new-mountain-input {
+  font-size: 0.8rem;
+  color: #7c7c7c;
+  font-weight: bold;
+  border-radius: 4px;
+  outline: none;
+  border-style: dashed;
+  border-color: #cecece;
+}
+
+.box-underline {
+  border-bottom: 1px solid #dbdbdb;
+  margin-bottom: 0.5rem;
+}
+
+.time-left-field {
+  font-size: 0.9rem;
+  color: #a6a6a6;
+  text-align: right;
+  border: none;
+  pointer-events: none;
+}
+
+.del-task {
+  text-decoration: underline;
+  font-size: 0.9rem;
+  color: #a6a6a6;
+  /*text-decoration-color: indianred;*/
+}
+
+
 /* Responsive design */
 /* if device has a touch screen */
 @media (any-pointer: coarse) {
@@ -505,7 +537,6 @@ ul > li > div > a {
   padding-right: 20%;
 }
 
-
 .dropdown-content {
   display: none;
   position: absolute;
@@ -532,3 +563,4 @@ ul > li > div > a {
 }
 
 }
+
