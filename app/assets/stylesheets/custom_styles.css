@@ -330,13 +330,13 @@ ul > li > div > a {
 
 .all-mountains-btn {
   display: inline-block;
-  width: 3rem;
-  height: 3rem;
-  background-image: url("icons8-document-folder-64.png");
+  width: 4rem;
+  height: 4rem;
+  background-image: url("mountains_footer.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  opacity: 0.4;
+  opacity: 0.8;
 }
 
 .add-task-btn {
@@ -353,13 +353,13 @@ ul > li > div > a {
 
 .profile-btn {
   display: inline-block;
-  width: 3rem;
-  height: 3rem;
-  background-image: url("icons8-male-user-50.png");
+  width: 5rem;
+  height: 5rem;
+  background-image: url("account.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  opacity: 0.4;
+  opacity: 0.8;
 }
 
 .nav-box {
