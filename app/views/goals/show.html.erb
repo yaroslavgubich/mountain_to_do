@@ -57,17 +57,15 @@
                 </div>
 
                 <div style="display: inline-block; width: 91%;">
-
                   <div class="two-elements">
-                    <span class="custom-form-label"> <%= task.deadline.present? ? task.deadline.strftime("%d %b %Y") : "No deadline" %> </span>
-                    <span class="time-left-field">9d 24h 14m</span>
+                    <span class="custom-form-label" id="task_deadline"> <%= task.deadline.present? ? task.deadline.strftime("%d %b %Y") : "No deadline" %> </span>
+                    <span class="time-left-field"> </span>
                   </div>
 
                   <div class="two-elements">
-                    <span> <%= link_to task.name, goal_task_path(@goal, task), class: "del-task" %> </span>
+                    <span id="task_name"> <%= link_to task.name, goal_task_path(@goal, task), class: "del-task" %> </span>
                     <span> <%= link_to 'Delete', goal_task_path(@goal, task), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "del-task" %> </span>
                   </div>
-
                 </div>
 
 
