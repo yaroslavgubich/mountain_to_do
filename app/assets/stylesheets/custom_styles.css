@@ -567,7 +567,13 @@ causing problems */
     border: 1px solid gray; /* for testing pusrpose only */
   }
 
-
+#progress-bar{
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 5px;
+}
 
 }
 

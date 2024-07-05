@@ -1,6 +1,24 @@
 <div class="container">
   <div class="page-container">
     <header>
+      <div class="progress" id="progress-bar">
+        <div class="progress-bar bg-info" 
+             role="progressbar" 
+             style="width: <%= @goal.percent_complete %>%;" 
+             aria-valuenow="<%= @goal.percent_complete %>" 
+             aria-valuemin="0" 
+             aria-valuemax="100">
+        </div>
+
+        <!-- Counter for completed and uncompleted tasks -->
+        <p class='text-secondary m-0'>
+          <small>
+            <%= @goal.percent_complete %> Complete (<%= @goal.completed_tasks %> / <%= @goal.total_tasks %> Tasks)
+          </small>
+        </p>
+    
+      </div>
+
       <div class="top-camera-gap"></div>
       <div class="content-center">
         <div class="header-label">Le Wagon progress</div>
@@ -36,23 +54,27 @@
       </div>
     </header>
 
-     <section>
+    <section>
       <article>
         <div class="tasks-list">
           <div class="mountains-container">
             <% @goal.tasks.each do |task| %>
               <div class="list-content-box">
                 <div class="list-content-claster mountain-label" style="width: 10%;">
-  <input type="checkbox" <%= task.completed ? 'checked' : '' %> />
-</div>
-
+                  <!-- Checkbox -->
+                  <div id="checkbox-success">
+                    <%= link_to '#', class: 'btn btn-success', style:'width:8px' do %>
+                      <i class='fas fa-check'></i>
+                    <% end %>
+                  </div>
+                </div>  
 
                 <div class="list-content-claster mountain-label" style="width: 75%">
-                  <%= link_to task.name, goal_task_path(@goal, task) %> -
+                  <%= link_to task.name, goal_task_path(@goal, task) %> - 
                   <span><%= task.deadline.present? ? task.deadline.strftime("%d %b %Y") : "No deadline" %></span>
                 </div>
 
-                <div class="list-content-claster mountan-menu" style="width: 10%;">
+                <div class="list-content-claster mountain-menu" style="width: 10%;">
                   <%= link_to 'Delete', goal_task_path(@goal, task), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-small" %>
                 </div>
               </div>
