@@ -102,7 +102,7 @@
           <!-- Task menu Buttons -->
           <div class="content-center" style="margin-top: 2rem;">
             <span><%= link_to '', goal_task_path(@goal, @task), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "delete-btn" %></span>
-            <div class="edit-btn"><%= link_to 'Edit Task', edit_goal_path(@goal) %></div>
+            <span><%= link_to '', edit_goal_path(@goal), class: "edit-btn" %></span>
             <div class="done-btn" onClick="setTaskCompleated();"></div>
             <div class="uncheckt-btn" onClick="setTaskNotCompleated()"></div>
           </div>
