@@ -1,4 +1,9 @@
 /*Custom styles for MountainToDO project */
+/* main colors vairiables  */
+:root {
+  --action-color-green: #00A499;
+  --back-button-black: #3D444C;
+}
 body {
   background-color: #fff;
 }
@@ -491,7 +496,7 @@ ul > li > div > a {
   /*text-decoration-color: indianred;*/
 }
 
-/* Styles to make dropdown work */
+/* Dropdown */
 
 .three-dots-icon {
   cursor: pointer;
@@ -545,6 +550,63 @@ causing problems */
   }
 
   
+}
+/* progress bar styling*/
+
+#progress-bar-container {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+#progress-text{
+  color: #ffffff;
+  box-shadow: #3D444C 1px 2px 1px;
+}
+#progress-bar {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  background-color: #636363;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 40px;
+}
+
+#progress-fill {
+  height: 100%;
+  background-color: var(--action-color-green);
+  transition: width 0.25s;
+}
+
+.progress-bar-text {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 0;
+  left: 0;
+}
+
+.tasks-list {
+  margin-top: 20px;
+}
+
+.list-content-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.list-content-claster {
+  display: flex;
+  align-items: center;
+}
+
+.mountain-label {
+  flex-grow: 1;
+}
+
+.mountain-menu {
+  flex-shrink: 0;
 }
 
 /* if device has no touch screen */

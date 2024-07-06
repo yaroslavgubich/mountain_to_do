@@ -1,87 +1,104 @@
-<div class="container">
-  <div class="page-container">
-    <header>
-      <div class="top-camera-gap"></div>
-      <div class="content-center">
-        <div class="header-label">Le Wagon progress</div>
-        <span class="vertical-menu-btn" onClick="menuOption();">
-          <!-- Dropdown content -->
-          <div id="login_dropdown_content">
-            <ul>
-              <li>
-                <div class="content-left mt-2">
-                  <div class="img-contact-us"></div>
-                  <span>Contact with us</span>
-                </div>
-              </li>
-              <li>
-                <div class="content-left mt-2">
-                  <div class="img-faq"></div>
-                  <span>FAQ</span>
-                </div>
-              </li>
-              <li>
-                <div class="content-left mt-2">
-                  <%= form_with url: destroy_user_session_path, method: :delete, local: true do %>
-                    <%= submit_tag 'Logout', class: 'btn btn-link', style: 'padding: 0; color: inherit; text-decoration: none;' %>
-                  <% end %>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </span>
-      </div>
-      <div class="footer-img-box content-center">
-        <div class="mountains-img"></div>
-      </div>
-    </header>
-
-     <section>
-      <article>
-        <div class="tasks-list">
-          <div class="mountains-container">
-            <% @goal.tasks.each do |task| %>
-              <div class="list-content-box">
-                <div class="list-content-claster mountain-label" style="width: 10%;">
-  <input type="checkbox" <%= task.completed ? 'checked' : '' %> />
-</div>
-
-
-                <div class="list-content-claster mountain-label" style="width: 75%">
-                  <%= link_to task.name, goal_task_path(@goal, task) %> -
-                  <span><%= task.deadline.present? ? task.deadline.strftime("%d %b %Y") : "No deadline" %></span>
-                </div>
-
-                <div class="list-content-claster mountan-menu" style="width: 10%;">
-                  <%= link_to 'Delete', goal_task_path(@goal, task), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-small" %>
-                </div>
-              </div>
-            <% end %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Progress</title>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_importmap_tags %>
+</head>
+<body>
+  <div class="container">
+    <div class="page-container">
+      <header>
+        <div id="progress-bar-container">
+          <div class="progress" id="progress-bar">
+            <div class="progress-bar " id="progress-fill" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+            <!-- Counter for completed and uncompleted tasks -->
+            <p class='progress-bar-text'>
+              <small id="progress-text"></small>
+            </p>
           </div>
         </div>
-      </article>
-    </section>
-  </div>
+        <div class="top-camera-gap"></div>
+        <div class="content-center">
+          <div class="header-label">Le Wagon progress</div>
+          <span class="vertical-menu-btn" onClick="menuOption();">
+            <!-- Dropdown content -->
+            <div id="login_dropdown_content">
+              <ul>
+                <li>
+                  <div class="content-left mt-2">
+                    <div class="img-contact-us"></div>
+                    <span>Contact with us</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="content-left mt-2">
+                    <div class="img-faq"></div>
+                    <span>FAQ</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="content-left mt-2">
+                    <%= form_with url: destroy_user_session_path, method: :delete, local: true do %>
+                      <%= submit_tag 'Logout', class: 'btn btn-link', style: 'padding: 0; color: inherit; text-decoration: none;' %>
+                    <% end %>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </span>
+        </div>
+        <div class="footer-img-box content-center">
+          <div class="mountains-img"></div>
+        </div>
+      </header>
 
-  <footer>
-    <div class="nav">
-      <div class="nav-box">
-        <a href="/goals">
-          <div class="all-mountains-btn"></div>
-        </a>
-      </div>
-
-      <div class="nav-box">
-        <a href="/goals/new">
-          <div class="add-task-btn"></div>
-        </a>
-      </div>
-
-      <div class="nav-box">
-        <a href="/profile">
-          <div class="profile-btn"></div>
-        </a>
-      </div>
+      <section>
+        <article>
+          <div class="tasks-list">
+            <div class="mountains-container">
+              <% @goal.tasks.each do |task| %>
+                <div class="list-content-box">
+                  <div class="list-content-claster mountain-label" style="width: 10%;">
+                    <input type="checkbox" class="task-checkbox" data-task-id="<%= task.id %>" <%= task.completed ? 'checked' : '' %> />
+                  </div>
+                  <div class="list-content-claster mountain-label" style="width: 75%">
+                    <%= link_to task.name, goal_task_path(@goal, task) %> -
+                    <span><%= task.deadline.present? ? task.deadline.strftime("%d %b %Y") : "No deadline" %></span>
+                  </div>
+                  <div class="list-content-claster mountain-menu" style="width: 10%;">
+                    <%= link_to 'Delete', goal_task_path(@goal, task), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-small" %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </article>
+      </section>
     </div>
-  </footer>
-</div>
+
+    <footer>
+      <div class="nav">
+        <div class="nav-box">
+          <a href="/goals">
+            <div class="all-mountains-btn"></div>
+          </a>
+        </div>
+        <div class="nav-box">
+          <a href="/goals/new">
+            <div class="add-task-btn"></div>
+          </a>
+        </div>
+        <div class="nav-box">
+          <a href="/profile">
+            <div class="profile-btn"></div>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script src="progress.js"></script>
+</body>
+</html>
