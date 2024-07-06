@@ -44,7 +44,7 @@
           <div class="content-center label-text-color fs-4 fw-bold mt-3">
             <div>
               <div style="text-align:center;"> <%= @goal.name %> </div>
-              <div style="font-weight: 100; font-size: 1.3rem;text-align:center; margin-bottom: 2rem;"> <%= @task.name %> </div>
+              <div style="font-weight: 100; font-size: 1.3rem;text-align:center; margin-bottom: 1rem;"> <%= @task.name %> </div>
             </div>
           </div>
         </div>
@@ -68,23 +68,42 @@
         </div>
 
 
-        <!--Task information -->
-        <div style= "border: 1px solid red;">
-          <div>
+        <div>
+          <!--Task information -->
+          <div style="margin-top: 2rem;">
             <div class="two-elements show-info-field">
               <span>Task progress:</span>
-              <span>77%</span>
+              <span id="task_progress" style="padding-right: 1rem;"></span>
             </div>
 
             <div class="two-elements show-info-field">
               <span>Task start date:</span>
-              <span>15 Jun 2024</span>
+              <span>
+                  <input type="date" style="text-align: right;
+                                            border: none;
+                                            font-size: 1rem;
+                                            color: #787878;
+                                            background-color: #fff;" id="task_start_date" disabled>
+              </span>
             </div>
 
             <div class="two-elements show-info-field">
               <span>Task end date:</span>
-              <span>18 Jun 2024</span>
+              <span>
+                <input type="date" style="text-align: right;
+                                              border: none;
+                                              font-size: 1rem;
+                                              color: #787878;
+                                              background-color: #fff;" id="task_end_date" disabled>
+              </span>
             </div>
+          </div>
+
+          <!-- Task menu Buttons -->
+          <div class="content-center" style="margin-top: 2rem;">
+            <div class="delete-btn"><%= link_to 'Delete Task', goal_task_path(@goal, @task), method: :delete, data: { turbo_confirm: "Are you sure?" } %></div>
+            <div class="edit-btn"><%= link_to 'Edit Task', edit_goal_path(@goal) %></div>
+            <div class="done-btn"> </div>
           </div>
         <div>
 
@@ -102,9 +121,11 @@
         -->
 
           <div class="task-actions">
+            <!--
             <%= link_to 'Edit Task', edit_goal_path(@goal), class: 'btn btn-small' %>
             <%= link_to 'Delete Task', goal_task_path(@goal, @task), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-small delete-task" %>
             <%= link_to 'Back to Goal', goal_path(@goal), class: 'btn btn-small' %>
+            -->
           </div>
         </div>
       </article>
@@ -119,8 +140,10 @@
         </a>
       </div>
       <div class="nav-box">
-        <a href="/goals/new">
-          <div class="add-task-btn"></div>
+        <a href="#">
+          <!--Need make link without name just <a href.... -->
+        <!--<%= link_to 'Back to Goal', goal_path(@goal) %> -->
+          <div class="back-btn"></div>
         </a>
       </div>
       <div class="nav-box">
@@ -144,6 +167,20 @@
   </div>
 </div>
 
+<script>
+  document.addEventListener('DOMContentLoaded', calculateProgress () );
+</script>
+
+
+
+
+
+
+
+
+<!-- Very bad style put in one file  JavaScript and CSS in one file. Don't mix all in one.
+    If you need script which will execute after load this page just add function <script> function() </script>
+    and keep JS in other file. -->
 <script>
   document.addEventListener('turbo:load', initializeDeleteModal);
   document.addEventListener('DOMContentLoaded', initializeDeleteModal);

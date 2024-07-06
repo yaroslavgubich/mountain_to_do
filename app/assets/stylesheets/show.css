@@ -5,7 +5,57 @@
 .show-info-field {
   width: 80%;
   margin: 12px auto;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #787878;
   border-bottom: 3px solid #d6d6d6;
+}
+
+.delete-btn {
+  display: inline-block;
+  width: 6rem;
+  height: 6rem;
+  background-image: url("Delete_btn.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.8;
+  margin-bottom: 40px;
+  margin-right: 12px;
+}
+
+.edit-btn {
+  display: inline-block;
+  width: 6rem;
+  height: 6rem;
+  background-image: url("Edit_btn.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.8;
+  margin-bottom: 40px;
+  margin-right: 12px;
+}
+
+.done-btn {
+  display: inline-block;
+  width: 6rem;
+  height: 6rem;
+  background-image: url("Done_btn.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.8;
+  margin-bottom: 40px;
+}
+
+.back-btn {
+  display: inline-block;
+  width: 5rem;
+  height: 5rem;
+  background-image: url(back_btn.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.8;
+  margin-bottom: 40px;
 }
