@@ -82,33 +82,7 @@
         <div class="section-content">
           <div class="selection-content-box">
             <%= form.fields_for :tasks do |task_form| %>
-<<<<<<< HEAD
               <!-- This section is hidden and only serves to allow the form_with helper to properly generate nested attributes for tasks -->
-=======
-
-              <!-- Goal task deadline and add button -->
-              <div class="field">
-                <div class="two-elements">
-                  <span> </span>
-                  <button type="button" onClick="addTask();" style="margin-bottom: 8px; color: #fff; font-weight: bold;">Add task</button>
-                </div>
-              </div>
-
-              <!-- list of tasks for this goal -->
-              <div id="tasks-list">
-                <div class="box-underline" id="task_nr1">
-                  <div class="two-elements">
-                    <input type="date" id="nm1_deadline" name="deadline" class="new-mountain-input">
-                    <input type="text" id="nm1_time_left" name="time_left" value="" class="time-left-field" readonly>
-                  </div>
-
-                  <div class="two-elements">
-                    <input type="text" id="nm1_name" class="new-mountain-input" name="task_name" placeholder="Task name">
-                    <span class="del-task" onClick="deleteTask(1);">Delete</span>
-                  </div>
-                </div>
-              </div>
->>>>>>> 5599f3f220ca68e4b91b704c0dd1a562fd6200dc
             <% end %>
 
             <!-- Goal task deadline and add button -->
@@ -150,7 +124,6 @@
       </footer>
     <% end %>
   </div>
-<<<<<<< HEAD
 
   <!-- Task template for Stimulus -->
   <template id="task-template" data-target="goals.taskTemplate">
@@ -165,6 +138,4 @@
       </div>
     </div>
   </template>
-=======
->>>>>>> 5599f3f220ca68e4b91b704c0dd1a562fd6200dc
 </div>
