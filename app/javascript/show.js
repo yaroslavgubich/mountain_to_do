@@ -5,7 +5,6 @@ function calculateProgress () {
     let start_date = document.getElementById("task_start_date");
     let end_date = document.getElementById("task_end_date");
 
-
     // If no start date will set today date
     if (start_date.value == '') {
       const today_date = new Date();
@@ -22,13 +21,15 @@ function calculateProgress () {
       /* Update start date with new value */
       var task_start_day = st_year +"-"+ st_month +"-"+ st_day;
       start_date.value = task_start_day;
+    } else {
+      var task_start_day = start_date.value;
     }
 
     if (end_date.value == '') {
       /* Creating end date */
       let end_task_date = new Date(document.getElementById("task_deadline").innerText);
       let end_task_year = end_task_date.getFullYear();
-      let end_task_month = end_task_date.getMonth();
+      let end_task_month = end_task_date.getMonth()+1;
       let end_task_day = end_task_date.getDate();
 
       /* Check or month less that 9 */
@@ -40,6 +41,8 @@ function calculateProgress () {
       /* Update end date with new value */
       var task_end_day = end_task_year +"-"+end_task_month+"-"+end_task_day;
       end_date.value = task_end_day;
+    } else {
+      var task_end_day = end_date.value;
     }
 
     // Set progres in percentage
@@ -53,9 +56,10 @@ function calculateProgress () {
       }
     }
 
+    task_end_day = null;
     checkTaskStatus();
 
-  }, 1500);
+  }, 1000);
 }
 
 // Add 0 if day or month date less 10
@@ -86,6 +90,24 @@ function checkTaskStatus() {
   let taskProgress = parseInt(document.getElementById("task_progress").innerText);
   if (taskProgress == 100) {
     document.getElementById("task_compleated").innerText = "Complete";
+  } else {
+    document.getElementById("task_compleated").innerText = "Not Complete";
   }
 
+}
+
+function setTaskCompleated() {
+  document.getElementById("mark_complete").checked = true;
+  document.getElementById("task_end_date").value = (new Date()).getFullYear() +"-"+convertDate((new Date()).getMonth()+1)+"-"+convertDate((new Date()).getDay());
+  document.querySelector(".done-btn").style="display:none;";
+  document.querySelector(".uncheckt-btn").style="display:inline-block;";
+  calculateProgress();
+}
+
+function setTaskNotCompleated() {
+  document.getElementById("mark_complete").checked = false;
+  document.getElementById("task_end_date").value = (new Date()).getFullYear() +"-"+convertDate((new Date()).getMonth()+1)+"-"+convertDate((new Date()).getDay()+1)
+  document.querySelector(".done-btn").style="display:inline-block;";
+  document.querySelector(".uncheckt-btn").style="display:none;";
+  calculateProgress();
 }

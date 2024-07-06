@@ -51,7 +51,7 @@
 
         <div class="box-underline">
           <div style="display: inline-block; margin: 4px;">
-            <input type="checkbox" <%= @task.completed ? 'checked' : '' %> disabled />
+            <input type="checkbox" id="mark_complete" <%= @task.completed ? 'checked' : '' %> disabled />
           </div>
 
           <div style="display: inline-block; width: 91%;">
@@ -101,9 +101,10 @@
 
           <!-- Task menu Buttons -->
           <div class="content-center" style="margin-top: 2rem;">
-            <div class="delete-btn"><%= link_to 'Delete Task', goal_task_path(@goal, @task), method: :delete, data: { turbo_confirm: "Are you sure?" } %></div>
+            <span><%= link_to '', goal_task_path(@goal, @task), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "delete-btn" %></span>
             <div class="edit-btn"><%= link_to 'Edit Task', edit_goal_path(@goal) %></div>
-            <div class="done-btn"> </div>
+            <div class="done-btn" onClick="setTaskCompleated();"></div>
+            <div class="uncheckt-btn" onClick="setTaskNotCompleated()"></div>
           </div>
         <div>
 
@@ -141,9 +142,8 @@
       </div>
       <div class="nav-box">
         <a href="#">
-          <!--Need make link without name just <a href.... -->
-        <!--<%= link_to 'Back to Goal', goal_path(@goal) %> -->
-          <div class="back-btn"></div>
+        <%= link_to '', goal_path(@goal), class: 'back-btn' %>
+          <!-- <div class="back-btn"></div> -->
         </a>
       </div>
       <div class="nav-box">
