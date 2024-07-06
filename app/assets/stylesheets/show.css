@@ -1,3 +1,11 @@
 .two-elements > #task_name > a {
   text-decoration: none;
 }
+
+.show-info-field {
+  width: 80%;
+  margin: 12px auto;
+  font-size: 1.1rem;
+  color: #787878;
+  border-bottom: 3px solid #d6d6d6;
+}

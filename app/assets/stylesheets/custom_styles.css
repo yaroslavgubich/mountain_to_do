@@ -341,9 +341,9 @@ ul > li > div > a {
 
 .add-task-btn {
   display: inline-block;
-  width: 4rem;
-  height: 4rem;
-  background-image: url("add_btn.png");
+  width: 6rem;
+  height: 6rem;
+  background-image: url("add_new.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;

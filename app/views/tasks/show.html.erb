@@ -3,7 +3,7 @@
     <header>
       <div class="top-camera-gap"></div>
       <div class="content-center">
-        <div class="header-label">Task: <%= @task.name %></div>
+        <div class="header-label">Progress</div>
         <span class="vertical-menu-btn" onClick="menuOption();">
           <!-- Dropdown content -->
           <div id="login_dropdown_content">
@@ -31,13 +31,64 @@
           </div>
         </span>
       </div>
+
       <div class="footer-img-box content-center">
-        <div class="mountains-img"></div>
+        <div class="new-mountain-img"></div>
       </div>
     </header>
 
     <section>
       <article>
+
+        <div>
+          <div class="content-center label-text-color fs-4 fw-bold mt-3">
+            <div>
+              <div style="text-align:center;"> <%= @goal.name %> </div>
+              <div style="font-weight: 100; font-size: 1.3rem;text-align:center; margin-bottom: 2rem;"> <%= @task.name %> </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box-underline">
+          <div style="display: inline-block; margin: 4px;">
+            <input type="checkbox" <%= @task.completed ? 'checked' : '' %> disabled />
+          </div>
+
+          <div style="display: inline-block; width: 91%;">
+            <div class="two-elements">
+              <span class="custom-form-label" id="task_deadline"> <%= @task.deadline.present? ? @task.deadline.strftime("%d %b %Y") : "No deadline" %> </span>
+              <span class="time-left-field del-task"> </span>
+            </div>
+
+            <div class="two-elements">
+              <span id="task_name" class="del-task" style="text-decoration: none;"> <%= @task.name %> </span>
+              <span class="del-task" style="text-decoration: none;"> <%= @task.completed ? "Compleated" : "Not Compleated" %> </span>
+            </div>
+          </div>
+        </div>
+
+
+        <!--Task information -->
+        <div style= "border: 1px solid red;">
+          <div>
+            <div class="two-elements show-info-field">
+              <span>Task progress:</span>
+              <span>77%</span>
+            </div>
+
+            <div class="two-elements show-info-field">
+              <span>Task start date:</span>
+              <span>15 Jun 2024</span>
+            </div>
+
+            <div class="two-elements show-info-field">
+              <span>Task end date:</span>
+              <span>18 Jun 2024</span>
+            </div>
+          </div>
+        <div>
+
+        <!--
         <div class="task-details">
           <div class="list-content-box" id="list-content-box-task-show">
             <div class="list-content-claster mountain-label" style="width: 5%;">
@@ -48,6 +99,8 @@
               <p>Completed: <%= @task.completed ? "yes" : "no" %></p>
             </div>
           </div>
+        -->
+
           <div class="task-actions">
             <%= link_to 'Edit Task', edit_goal_path(@goal), class: 'btn btn-small' %>
             <%= link_to 'Delete Task', goal_task_path(@goal, @task), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-small delete-task" %>
