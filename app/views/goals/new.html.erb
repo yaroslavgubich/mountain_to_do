@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container" data-controller="goals">
   <div class="page-container">
 
     <header>
-      <div class="top-camera-gap"> </div>
+      <div class="top-camera-gap"></div>
       <div class="content-center">
         <span class="header-label">New mountain</span>
         <span class="vertical-menu-btn" onClick="menuOption();">
@@ -82,6 +82,9 @@
         <div class="section-content">
           <div class="selection-content-box">
             <%= form.fields_for :tasks do |task_form| %>
+<<<<<<< HEAD
+              <!-- This section is hidden and only serves to allow the form_with helper to properly generate nested attributes for tasks -->
+=======
 
               <!-- Goal task deadline and add button -->
               <div class="field">
@@ -105,7 +108,30 @@
                   </div>
                 </div>
               </div>
+>>>>>>> 5599f3f220ca68e4b91b704c0dd1a562fd6200dc
             <% end %>
+
+            <!-- Goal task deadline and add button -->
+            <div class="field">
+              <div class="two-elements">
+                <span></span>
+                <button type="button" style="margin-bottom: 8px; color: #fff; font-weight: bold;" data-action="click->goals#addTask">Add task</button>
+              </div>
+            </div>
+
+            <!-- List of tasks for this goal -->
+            <div id="tasks-list" data-target="goals.tasksList">
+              <div class="box-underline task-field" id="task_nr0">
+                <div class="two-elements">
+                  <input type="date" name="goal[tasks_attributes][0][deadline]" id="nm0_deadline" class="new-mountain-input">
+                  <input type="text" name="goal[tasks_attributes][0][time_left]" id="nm0_time_left" value="" class="time-left-field" readonly>
+                </div>
+                <div class="two-elements">
+                  <input type="text" name="goal[tasks_attributes][0][name]" id="nm0_name" class="new-mountain-input" placeholder="Task name">
+                  <span class="del-task" data-action="click->goals#removeTask">Delete</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -113,7 +139,7 @@
       <footer>
         <div class="footer-btn">
           <div class="actions">
-            <%= form.submit "Create Goal", id: "create_goal_btn", onClick: "newTaskCounterReset()" %>
+            <%= form.submit "Create Goal", id: "create_goal_btn", data: { action: "goals#newTaskCounterReset" } %>
           </div>
           <div>
             <button style="background-color: #3D444C !important;">
@@ -124,4 +150,21 @@
       </footer>
     <% end %>
   </div>
+<<<<<<< HEAD
+
+  <!-- Task template for Stimulus -->
+  <template id="task-template" data-target="goals.taskTemplate">
+    <div class="box-underline task-field" id="task_nrTEMPLATE_INDEX">
+      <div class="two-elements">
+        <input type="date" name="goal[tasks_attributes][TEMPLATE_INDEX][deadline]" class="new-mountain-input" id="nmTEMPLATE_INDEX_deadline">
+        <input type="text" name="goal[tasks_attributes][TEMPLATE_INDEX][time_left]" class="time-left-field" id="nmTEMPLATE_INDEX_time_left" readonly>
+      </div>
+      <div class="two-elements">
+        <input type="text" name="goal[tasks_attributes][TEMPLATE_INDEX][name]" class="new-mountain-input" id="nmTEMPLATE_INDEX_name" placeholder="Task name">
+        <span class="del-task" data-action="click->goals#removeTask">Delete</span>
+      </div>
+    </div>
+  </template>
+=======
+>>>>>>> 5599f3f220ca68e4b91b704c0dd1a562fd6200dc
 </div>

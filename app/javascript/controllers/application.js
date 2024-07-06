@@ -7,3 +7,7 @@ application.debug = false
 window.Stimulus   = application
 
 export { application }
+console.log("dimitris stim")
+
+import GoalsController from "controllers/goals_controller"
+application.register("goals", GoalsController)
