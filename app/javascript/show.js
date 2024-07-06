@@ -53,6 +53,8 @@ function calculateProgress () {
       }
     }
 
+    checkTaskStatus();
+
   }, 1500);
 }
 
@@ -78,4 +80,12 @@ function getProgressPercentage (start_date, endDate) {
   const done_percent = (till_now_sec-till_start_date_sec) / one_percent;
 
   return Math.floor(done_percent);
+}
+
+function checkTaskStatus() {
+  let taskProgress = parseInt(document.getElementById("task_progress").innerText);
+  if (taskProgress == 100) {
+    document.getElementById("task_compleated").innerText = "Complete";
+  }
+
 }

@@ -62,7 +62,7 @@
 
             <div class="two-elements">
               <span id="task_name" class="del-task" style="text-decoration: none;"> <%= @task.name %> </span>
-              <span class="del-task" style="text-decoration: none;"> <%= @task.completed ? "Compleated" : "Not Compleated" %> </span>
+              <span class="del-task" id="task_compleated" style="text-decoration: none;"> <%= @task.completed ? "Complete" : "Not Complete" %> </span>
             </div>
           </div>
         </div>
@@ -82,7 +82,7 @@
                   <input type="date" style="text-align: right;
                                             border: none;
                                             font-size: 1rem;
-                                            color: #787878;
+                                            color: #a6a6a6;
                                             background-color: #fff;" id="task_start_date" disabled>
               </span>
             </div>
@@ -93,7 +93,7 @@
                 <input type="date" style="text-align: right;
                                               border: none;
                                               font-size: 1rem;
-                                              color: #787878;
+                                              color: #a6a6a6;
                                               background-color: #fff;" id="task_end_date" disabled>
               </span>
             </div>
