@@ -1,4 +1,9 @@
 /*Custom styles for MountainToDO project */
+/* main colors vairiables  */
+:root {
+  --action-color-green: #00A499;
+  --back-button-black: #3D444C;
+}
 body {
   background-color: #fff;
 }
@@ -491,7 +496,7 @@ ul > li > div > a {
   /*text-decoration-color: indianred;*/
 }
 
-/* Styles to make dropdown work */
+/* Dropdown */
 
 .three-dots-icon {
   cursor: pointer;
@@ -546,26 +551,30 @@ causing problems */
 
   
 }
-/* styles.css */
+/* progress bar styling*/
 
 #progress-bar-container {
   position: relative;
   width: 100%;
   margin-bottom: 20px;
 }
-
+#progress-text{
+  color: #ffffff;
+  box-shadow: #3D444C 1px 2px 1px;
+}
 #progress-bar {
   position: relative;
   width: 100%;
   height: 20px;
-  background-color: #f3f3f3;
+  background-color: #636363;
   border-radius: 10px;
   overflow: hidden;
+  margin-top: 40px;
 }
 
 #progress-fill {
   height: 100%;
-  background-color: #007bff;
+  background-color: var(--action-color-green);
   transition: width 0.25s;
 }
 
@@ -573,7 +582,6 @@ causing problems */
   position: absolute;
   width: 100%;
   text-align: center;
-  color: blue; /* Change to your desired color */
   top: 0;
   left: 0;
 }
