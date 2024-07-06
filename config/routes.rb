@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   resource :profile, only: %i[show update]
 
   resources :goals do
-    resources :tasks, only: [:edit, :update, :destroy, :create, :new, :show]
+    resources :tasks, only: [:edit, :update, :destroy, :create, :new, :show] do
+      member do
+        patch :toggle_completion
+      end
+    end
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

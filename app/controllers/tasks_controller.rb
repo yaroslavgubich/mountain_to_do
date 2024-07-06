@@ -1,9 +1,9 @@
 class TasksController < ApplicationController
-  before_action :set_goal, only: [:new, :create, :show, :edit, :update, :destroy]
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_goal, only: %i[new create show edit update destroy toggle_completion]
+  before_action :set_task, only: %i[show edit update destroy toggle_completion]
 
   def index
-    @tasks = Task.all
+    @tasks = @goal.tasks.order(:created_at) # Ensure original order is maintained
   end
 
   def new
@@ -38,6 +38,14 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     redirect_to @goal, notice: 'Task was successfully deleted.'
+  end
+
+  def toggle_completion
+    if @task.update(completed: params[:completed].present?)
+      redirect_to goal_path(@goal), notice: 'Task status updated.'
+    else
+      redirect_to goal_path(@goal), alert: 'Failed to update task status.'
+    end
   end
 
   private
