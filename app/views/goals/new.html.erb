@@ -1,176 +1,141 @@
-<div class="container">
-  <div class="page-conteiner">
+<div class="container" data-controller="goals">
+  <div class="page-container">
 
     <header>
-      <div class="top-camera-gap"> </div>
-	@@ -31,7 +29,6 @@
+      <div class="top-camera-gap"></div>
+      <div class="content-center">
+        <span class="header-label">New mountain</span>
+        <span class="vertical-menu-btn" onClick="menuOption();">
+
+          <!-- Dropdown content -->
+          <div id="login_dropdown_content">
+            <ul>
+              <li>
+                <div class="content-left mt-2">
+                  <div class="img-contact-us"></div>
+                  <span>Contact with us</span>
+                </div>
+              </li>
+              <li>
+                <div class="content-left mt-2">
+                  <div class="img-faq"></div>
+                  <span>FAQ</span>
+                </div>
+              </li>
+              <li>
+                <div class="content-left mt-2">
+                  <%= form_with url: destroy_user_session_path, method: :delete, local: true do %>
+                    <%= submit_tag 'Logout', class: 'btn btn-link', style: 'padding: 0; color: inherit; text-decoration: none;' %>
                   <% end %>
                 </div>
               </li>
-
             </ul>
           </div>
 
-	@@ -42,164 +39,89 @@
+        </span>
+      </div>
+      <div class="footer-img-box content-center">
+        <div class="new-mountain-img"></div>
       </div>
     </header>
 
-    <section>
-      <%= form_with(model: @goal, local: true) do |form| %>
+    <%= form_with(model: @goal, local: true) do |form| %>
       <% if @goal.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@goal.errors.count, "error") %> prohibited this goal from being saved:</h2>
           <ul>
-          <% @goal.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
+            <% @goal.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
           </ul>
         </div>
       <% end %>
 
-      <!-- First input block -->
-      <div class="section-content">
-        <div class="selection-content-box">
+      <section>
+        <!-- First input block -->
+        <div class="section-content">
+          <div class="selection-content-box">
 
-          <!-- Goal name -->
-          <div class="field">
-            <%= form.label :name %>
-            <%= form.text_field :name %>
-          </div>
+            <!-- Goal name -->
+            <div class="field">
+              <%= form.label :name %>
+              <%= form.text_field :name %>
+            </div>
 
+            <!-- Goal start date -->
+            <div class="field">
+              <%= form.label :start_date %>
+              <%= form.date_field :start_date %>
+            </div>
 
-          <!-- Goal start date -->
-          <div class="field">
-            <%= form.label :start_date %>
-            <%= form.date_field :start_date %>
-          </div>
-
-          <!-- Goal end date -->
-          <div class="field">
-            <%= form.label :deadline %>
-            <%= form.date_field :deadline %>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <!-- Second input block -->
-      <div class="section-content">
-        <div class="selection-content-box">
-          <%= form.fields_for :tasks do |task_form| %>
-
-
-          <!-- Goal task name -->
-          <!--
-          <div class="field">
-            <%= task_form.label :name %>
-            <%= task_form.text_field :name %>
-          </div>
-          -->
-
-          <!-- Goal task deadline and add button -->
-
-          <div class="field">
-            <!-- <%= task_form.label :deadline %> -->
-            <div class="two-elements">
-              <!-- <%= task_form.date_field :deadline %> -->
-              <span></span>
-              <button type="button" style="margin-bottom: 8px; color: #fff; font-weight: bold;" onClick="addTask();">Add task</button>
+            <!-- Goal end date -->
+            <div class="field">
+              <%= form.label :deadline %>
+              <%= form.date_field :deadline %>
             </div>
           </div>
+        </div>
+      </section>
 
+      <section>
+        <!-- Second input block -->
+        <div class="section-content">
+          <div class="selection-content-box">
+            <%= form.fields_for :tasks do |task_form| %>
+              <!-- This section is hidden and only serves to allow the form_with helper to properly generate nested attributes for tasks -->
+            <% end %>
 
-          <!-- list of tasks for this goal -->
-          <div id="tasks-list">
-            <div class="box-underline" id="task_nr1">
+            <!-- Goal task deadline and add button -->
+            <div class="field">
+              <div class="two-elements">
+                <span></span>
+                <button type="button" style="margin-bottom: 8px; color: #fff; font-weight: bold;" data-action="click->goals#addTask">Add task</button>
+              </div>
+            </div>
+
+            <!-- List of tasks for this goal -->
+            <div id="tasks-list" data-target="goals.tasksList">
+              <div class="box-underline task-field" id="task_nr0">
                 <div class="two-elements">
-                  <input type="date" id="nm1_deadline" name="deadline" class="new-mountain-input">
-                  <input type="text" id="nm1_time_left" name="time_left" value="" class="time-left-field" readonly>
+                  <input type="date" name="goal[tasks_attributes][0][deadline]" id="nm0_deadline" class="new-mountain-input">
+                  <input type="text" name="goal[tasks_attributes][0][time_left]" id="nm0_time_left" value="" class="time-left-field" readonly>
                 </div>
-
                 <div class="two-elements">
-                  <input type="text" id="nm1_name" class="new-mountain-input" name="task_name" placeholder="Task name">
-                  <span class="del-task" onClick="deleteTask(1);">Delete</span>
+                  <input type="text" name="goal[tasks_attributes][0][name]" id="nm0_name" class="new-mountain-input" placeholder="Task name">
+                  <span class="del-task" data-action="click->goals#removeTask">Delete</span>
                 </div>
+              </div>
             </div>
           </div>
-
-
-          <!-- Goal start date -->
-          <div class="field">
-            <%= form.label :start_date %>
-            <%= form.date_field :start_date %>
-          </div>
-
-          <!-- Goal end date -->
-          <div class="field">
-            <%= form.label :deadline %>
-            <%= form.date_field :deadline %>
-          </div>
-
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section>
-      <!-- Second input block -->
-      <div class="section-content">
-        <div class="selection-content-box">
-          <%= form.fields_for :tasks do |task_form| %>
-
-          <!-- Goal task name -->
-          <div class="field">
-            <%= task_form.label :name %>
-            <%= task_form.text_field :name %>
+      <footer>
+        <div class="footer-btn">
+          <div class="actions">
+            <%= form.submit "Create Goal", id: "create_goal_btn", data: { action: "goals#newTaskCounterReset" } %>
           </div>
-
-          <!-- Goal task deadline and add button -->
-          <div class="field">
-            <%= task_form.label :deadline %>
-            <div class="two-elements">
-              <%= task_form.date_field :deadline %>
-              <button type="button" ><a href="#">Add task</a></button>
-            </div>
+          <div>
+            <button style="background-color: #3D444C !important;">
+              <a href="/goals" style="color: #fff; text-decoration: none;">Cancel</a>
+            </button>
           </div>
-
-          <!-- list of tasks for this goal -->
-
-
-          <!--------------------------------->
-
-          <% end %>
         </div>
+      </footer>
+    <% end %>
+  </div>
+
+  <!-- Task template for Stimulus -->
+  <template id="task-template" data-target="goals.taskTemplate">
+    <div class="box-underline task-field" id="task_nrTEMPLATE_INDEX">
+      <div class="two-elements">
+        <input type="date" name="goal[tasks_attributes][TEMPLATE_INDEX][deadline]" class="new-mountain-input" id="nmTEMPLATE_INDEX_deadline">
+        <input type="text" name="goal[tasks_attributes][TEMPLATE_INDEX][time_left]" class="time-left-field" id="nmTEMPLATE_INDEX_time_left" readonly>
       </div>
-    </section>
+      <div class="two-elements">
+        <input type="text" name="goal[tasks_attributes][TEMPLATE_INDEX][name]" class="new-mountain-input" id="nmTEMPLATE_INDEX_name" placeholder="Task name">
+        <span class="del-task" data-action="click->goals#removeTask">Delete</span>
+      </div>
     </div>
-
-    <footer>
-      <div class="footer-btn">
-        <div class="actions">
-
-          <!-- <input type="submit" name="commit" value="Create Goal" data-disable-with="Create Goal"> -->
-          <%= form.submit "Create Goal", id: "create_goal_btn" %>
-          <%= form.submit %>
-
-        </div>
-        <div>
-          <button style="background-color: #3D444C !important;"> <a href="/goals">Cancel</a> </button>
-        </div>
-      </div>
-    </footer>
-
-
-      <% end %>
-  </div>
-
-<!--
-  1. Button Create Goal need add id ir onClick and call function "newTaskCounterReset()"
-  2. Create ruby code to cach array with goals and save it in to database.
-  3.
--->
-
-
-      <% end %>
-  </div>
+  </template>
+</div>
