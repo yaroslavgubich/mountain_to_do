@@ -50,8 +50,9 @@
         </div>
 
         <div class="box-underline">
-          <div style="display: inline-block; margin: 4px;">
-            <input type="checkbox" id="mark_complete" <%= @task.completed ? 'checked' : '' %> disabled />
+          <div style="display: inline-block; /*margin: 4px;*/">
+            <!--<input type="checkbox" id="mark_complete" <%= @task.completed ? 'checked' : '' %> disabled />-->
+            <canvas id="myCanvas" width="20px" height="20px"></canvas>
           </div>
 
           <div style="display: inline-block; width: 91%;">
@@ -62,6 +63,7 @@
 
             <div class="two-elements">
               <span id="task_name" class="del-task" style="text-decoration: none;"> <%= @task.name %> </span>
+              <input type="text" id="new-task-name" class="del-task" style="text-decoration: none;" value="<%= @task.name %>">
               <span class="del-task" id="task_compleated" style="text-decoration: none;"> <%= @task.completed ? "Complete" : "Not Complete" %> </span>
             </div>
           </div>
@@ -101,10 +103,21 @@
 
           <!-- Task menu Buttons -->
           <div class="content-center" style="margin-top: 2rem;">
-            <span><%= link_to '', goal_task_path(@goal, @task), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "delete-btn" %></span>
-            <span><%= link_to '', edit_goal_path(@goal), class: "edit-btn" %></span>
-            <div class="done-btn" onClick="setTaskCompleated();"></div>
-            <div class="uncheckt-btn" onClick="setTaskNotCompleated()"></div>
+            <span>
+              <%= link_to '', goal_task_path(@goal, @task), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "delete-btn" %>
+              <div class="cancel-btn" onClick="cancelEditing();"></div>
+            </span>
+
+            <span>
+              <!--<%= link_to '', edit_goal_path(@goal), class: "edit-btn" %>-->
+              <div class="edit-btn" onClick="editMountanTask();"></div>
+              <div class="save-btn" OnClick=""></div>
+              </span>
+
+            <span>
+              <div class="done-btn" onClick="setTaskCompleated();"></div>
+              <div class="uncheckt-btn" onClick="setTaskNotCompleated()"></div>
+            </span>
           </div>
         <div>
 
@@ -168,7 +181,7 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', calculateProgress () );
+  document.addEventListener('DOMContentLoaded', calculateProgress() );
 </script>
 
 

@@ -58,7 +58,6 @@ function calculateProgress () {
 
     task_end_day = null;
     checkTaskStatus();
-
   }, 1000);
 }
 
@@ -88,6 +87,7 @@ function getProgressPercentage (start_date, endDate) {
 
 function checkTaskStatus() {
   let taskProgress = parseInt(document.getElementById("task_progress").innerText);
+  taskProgressCanvas(taskProgress);
   if (taskProgress == 100) {
     document.getElementById("task_compleated").innerText = "Complete";
   } else {
@@ -110,4 +110,66 @@ function setTaskNotCompleated() {
   document.querySelector(".done-btn").style="display:inline-block;";
   document.querySelector(".uncheckt-btn").style="display:none;";
   calculateProgress();
+}
+
+function editMountanTask() {
+  document.querySelector(".edit-btn").style="display: none;";
+  document.querySelector(".save-btn").style="display: inline-block;";
+  document.querySelector(".done-btn").style="display: none;";
+  document.querySelector(".delete-btn").style="display: none;";
+  document.querySelector(".cancel-btn").style="display: inline-block;";
+
+  let end_date = document.getElementById("task_end_date");
+  end_date.disabled = false;
+  end_date.style="border-radius: 4px; border-color: #a6a6a6; color: #a6a6a6; border-style: solid; text-align: right;";
+
+  let start_date = document.getElementById("task_start_date");
+  start_date.disabled = false;
+  start_date.style="border-radius: 4px; border-color: #a6a6a6; color: #a6a6a6; border-style: solid; solid; text-align: right;";
+
+  document.getElementById("task_name").style="display:none;";
+  document.getElementById("new-task-name").style="display:inline-block; border-radius: 4px; border-color: #a6a6a6; color: #a6a6a6; border-style: solid; solid;";
+
+}
+
+function cancelEditing() {
+  window.location.reload();
+}
+
+function saveEditedTask() {
+  // Need collect and save all new goal data
+  window.location.reload();
+}
+
+function taskProgressCanvas(progress = 0) {
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
+
+ctx.beginPath();
+ctx.moveTo(0, 20);
+ctx.strokeStyle = "#a6a6a6";
+ctx.lineTo(8, 0);
+ctx.lineTo(16, 20);
+ctx.lineTo(0, 20);
+ctx.moveTo(16, 20);
+ctx.lineTo(20, 20);
+ctx.lineTo(16, 10);
+ctx.lineTo(14, 15);
+ctx.stroke();
+
+ctx.beginPath();
+ctx.strokeStyle = "#4dc05a";
+
+
+// MAx i<=18
+if (!(progress <= 0)) {
+  for (i=0, ii=0; i<= progress/5.5; i++, ii+=0.5) {
+        ctx.moveTo(1+ii/1.6, 19-i);
+        ctx.lineTo(16-ii, 19-i);
+  }
+}
+
+ctx.stroke();
+
+
 }
