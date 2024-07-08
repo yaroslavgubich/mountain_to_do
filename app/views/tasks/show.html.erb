@@ -104,7 +104,7 @@
           <!-- Task menu Buttons -->
           <div class="content-center" style="margin-top: 2rem;">
             <span>
-              <%= link_to '', goal_task_path(@goal, @task), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "delete-btn" %>
+              <%= link_to '', goal_task_path(@goal, @task), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "delete-btn delete-task" %>
               <div class="cancel-btn" onClick="cancelEditing();"></div>
             </span>
 
@@ -134,13 +134,15 @@
           </div>
         -->
 
+<!--
           <div class="task-actions">
-            <!--
+
             <%= link_to 'Edit Task', edit_goal_path(@goal), class: 'btn btn-small' %>
             <%= link_to 'Delete Task', goal_task_path(@goal, @task), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-small delete-task" %>
             <%= link_to 'Back to Goal', goal_path(@goal), class: 'btn btn-small' %>
-            -->
+
           </div>
+          -->
         </div>
       </article>
     </section>
