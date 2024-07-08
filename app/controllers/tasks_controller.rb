@@ -24,7 +24,7 @@ class TasksController < ApplicationController
   end
 
   def edit
-    # @task is already set by the before_action
+
   end
 
   def update
@@ -47,7 +47,7 @@ class TasksController < ApplicationController
   end
 
   def set_task
-    @task = @goal.tasks.find(params[:id])
+    @task = Task.find(params[:id])
   end
 
   def task_params

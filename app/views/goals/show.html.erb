@@ -65,7 +65,7 @@
                     <input type="checkbox" class="task-checkbox" data-task-id="<%= task.id %>" <%= task.completed ? 'checked' : '' %> />
                   </div>
                   <div class="list-content-claster mountain-label" style="width: 75%">
-                    <%= link_to task.name, goal_task_path(@goal, task) %> -
+                    <%= link_to task.name, edit_goal_task_path(@goal, task) %>
                     <span><%= task.deadline.present? ? task.deadline.strftime("%d %b %Y") : "No deadline" %></span>
                   </div>
                   <div class="list-content-claster mountain-menu" style="width: 10%;">

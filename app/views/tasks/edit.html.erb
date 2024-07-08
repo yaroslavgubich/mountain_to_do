@@ -1,0 +1,118 @@
+<div class="container" data-controller="focus-date">
+  <div class="page-container">
+    <header>
+      <div class="top-camera-gap"></div>
+      <div class="content-center">
+        <span class="header-label">Edit mountain</span>
+        <span class="vertical-menu-btn" onClick="menuOption();">
+          <!-- Dropdown content -->
+          <div id="login_dropdown_content">
+            <ul>
+              <li>
+                <div class="content-left mt-2">
+                  <div class="img-contact-us"></div>
+                  <span>Contact with us</span>
+                </div>
+              </li>
+              <li>
+                <div class="content-left mt-2">
+                  <div class="img-faq"></div>
+                  <span>FAQ</span>
+                </div>
+              </li>
+              <li>
+                <div class="content-left mt-2">
+                  <%= form_with url: destroy_user_session_path, method: :delete, local: true do %>
+                    <%= submit_tag 'Logout', class: 'btn btn-link', style: 'padding: 0; color: inherit; text-decoration: none;' %>
+                  <% end %>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </span>
+      </div>
+      <div class="footer-img-box content-center">
+        <div class="new-mountain-img"></div>
+      </div>
+    </header>
+
+    <section>
+      <%= form_with(model: @goal, local: true) do |form| %>
+        <% if @goal.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@goal.errors.count, "error") %> prohibited this goal from being saved:</h2>
+            <ul>
+              <% @goal.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <!-- First input block -->
+        <div class="section-content">
+          <div class="selection-content-box">
+            <!-- Goal name -->
+            <div class="field">
+              <%= form.label :name %>
+              <%= form.text_field :name %>
+            </div>
+            <!-- Goal start date -->
+            <div class="field" data-action="click->focus-date#focusDateInput">
+              <%= form.label :start_date %>
+              <%= form.date_field :start_date %>
+            </div>
+            <!-- Goal end date -->
+            <div class="field" data-action="click->focus-date#focusDateInput">
+              <%= form.label :deadline %>
+              <%= form.date_field :deadline %>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="content-center">
+        <span class="header-label">Edit Task</span>
+      </div>
+
+      <section>
+        <!-- Second input block -->
+        <div class="section-content">
+          <div class="selection-content-box">
+            <%= form.fields_for :tasks, @task do |task_form| %>
+              <%= task_form.hidden_field :_destroy %>
+              <!-- Task name -->
+              <div class="field">
+                <%= task_form.label :name %>
+                <%= task_form.text_field :name %>
+              </div>
+              <!-- Task deadline -->
+              <div class="field" data-action="click->focus-date#focusDateInput">
+                <%= task_form.label :deadline %>
+                <%= task_form.date_field :deadline %>
+              </div>
+              <!-- Task completed -->
+              <div class="field" style="text-align: center;">
+                <%= task_form.label :completed %>
+                <%= task_form.check_box :completed %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="footer-btn">
+          <div class="actions">
+            <%= form.submit 'Update Goal' %>
+          </div>
+          <div>
+            <button style="background-color: #3D444C !important;">
+              <%= link_to 'Cancel', @goal, style: "color: #fff; text-decoration: none;" %>
+            </button>
+          </div>
+        </div>
+      </footer>
+    <% end %>
+  </div>
+</div>

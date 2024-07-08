@@ -11,3 +11,7 @@ console.log("dimitris stim")
 
 import GoalsController from "controllers/goals_controller"
 application.register("goals", GoalsController)
+
+
+import FocusDateController from "./focus_date_controller"
+application.register("focus-date", FocusDateController)
