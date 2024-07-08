@@ -8,9 +8,11 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "custom_styles", media: 'all', data: { turbolinks: false } %>
+    <%= stylesheet_link_tag "show", media: 'all', data: { turbolinks: false } %>
 
     <%= javascript_importmap_tags %>
     <%= javascript_include_tag 'custom.js' %>
+    <%= javascript_include_tag 'show.js' %>
   </head>
 
   <body>
