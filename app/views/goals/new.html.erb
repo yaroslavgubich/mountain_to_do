@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container" data-controller="goals">
   <div class="page-container">
 
     <header>
-      <div class="top-camera-gap"> </div>
+      <div class="top-camera-gap"></div>
       <div class="content-center">
         <span class="header-label">New mountain</span>
         <span class="vertical-menu-btn" onClick="menuOption();">
@@ -83,6 +83,7 @@
           <div class="selection-content-box">
             <%= form.fields_for :tasks do |task_form| %>
 
+
               <!-- Goal task deadline and add button -->
               <div class="field">
                 <div class="two-elements">
@@ -105,15 +106,15 @@
                   </div>
                 </div>
               </div>
+
             <% end %>
-          </div>
-        </div>
+
       </section>
 
       <footer>
         <div class="footer-btn">
           <div class="actions">
-            <%= form.submit "Create Goal", id: "create_goal_btn", onClick: "newTaskCounterReset()" %>
+            <%= form.submit "Create Goal", id: "create_goal_btn", data: { action: "goals#newTaskCounterReset" } %>
           </div>
           <div>
             <button style="background-color: #3D444C !important;">
@@ -124,4 +125,17 @@
       </footer>
     <% end %>
   </div>
+  <!-- Task template for Stimulus -->
+  <template id="task-template" data-target="goals.taskTemplate">
+    <div class="box-underline task-field" id="task_nrTEMPLATE_INDEX">
+      <div class="two-elements">
+        <input type="date" name="goal[tasks_attributes][TEMPLATE_INDEX][deadline]" class="new-mountain-input" id="nmTEMPLATE_INDEX_deadline">
+        <input type="text" name="goal[tasks_attributes][TEMPLATE_INDEX][time_left]" class="time-left-field" id="nmTEMPLATE_INDEX_time_left" readonly>
+      </div>
+      <div class="two-elements">
+        <input type="text" name="goal[tasks_attributes][TEMPLATE_INDEX][name]" class="new-mountain-input" id="nmTEMPLATE_INDEX_name" placeholder="Task name">
+        <span class="del-task" data-action="click->goals#removeTask">Delete</span>
+      </div>
+    </div>
+  </template>
 </div>

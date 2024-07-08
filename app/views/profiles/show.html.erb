@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile Page</title>
-  <link rel="stylesheet" href="profile.css">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
 </head>
 <body>
   <div id="profile-container">
@@ -16,14 +16,35 @@
     <div id="profile-info">
       <div id="profile-header">
         <div id="profile-title"><%= @user.username %> profile</div>
-        
-      <div id="profile-picture-container">
-        <svg id="profile-picture" xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-person-square" viewBox="0 0 16 16">
-          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-          <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
-        </svg>
+
+
+      <div id="profile-picture-container" style="cursor:pointer;">
+        <% if @user.profile_image.attached? %>
+          <div style="display: inline-block; text-align: center;">
+            <%= image_tag @user.profile_image, id: "profile-picture" %>
+            <br>
+            <%= button_to 'Remove Image', remove_profile_image_path(id: @user.id), method: :delete, form: {class: "inline"}, style: "margin-top: 10px; padding: 3px 6px; background-color: #00A499; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 10px;" %>
+          </div>
+        <% else %>
+          <div style="display: inline-block; text-align: center;">
+            <svg id="profile-picture" xmlns="http://www.w3.org/2000/svg" width="120" height="120" fill="currentColor" class="bi bi-person-square" viewBox="0 0 16 16" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+              <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
+            </svg>
+            <br>
+            <!-- File input for adding an image -->
+            <%= form_with model: @user, url: profile_path, local: true, method: :patch, html: { multipart: true } do |form| %>
+              <div class="form-group">
+                <%= form.file_field :profile_image, class: 'form-control', style: "margin-top: 10px; font-size: 0.8rem; padding: 5px 10px; width: 200px;" %>
+              </div>
+              <div class="form-group">
+                <%= form.submit 'Add Image', class: 'btn btn-primary', style: "margin-top: 4px; padding: 3px 6px; background-color: #00A499; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 10px; width: 100px;" %>
+              </div>
+              <% end %>
+          </div>
+        <% end %>
       </div>
-          
+
       </div>
       <div id="username-section">
         <label for="username" id="username-label">User Name</label>
@@ -34,8 +55,19 @@
         <div id="email-box"><%= @user.email %></div>
       </div>
     </div>
-    
+
     <div id="edit-form" style="display: none;">
+      <!-- Add Profile Image Form -->
+      <%= form_with model: @user, url: profile_path, local: true, method: :patch, html: { multipart: true } do |form| %>
+        <div class="form-group">
+          <%= form.label :profile_image, 'Profile Image:' %>
+          <%= form.file_field :profile_image, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= form.submit 'Update Profile Image', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+
       <!-- Username Form -->
       <%= form_with model: @user, url: profile_path, local: true, method: :patch, html: { id: 'username-form' } do |form| %>
         <div class="form-group">
@@ -78,13 +110,13 @@
 
     <div id="profile-buttons">
       <button id="edit-button" class="btn btn-primary">Edit</button>
-      
+
       <button id="back-button" class="btn btn-secondary">Back</button>
     </div>
   </div>
 
   <script>
-    
+
     document.getElementById("edit-button").addEventListener("click", function() {
       const editForm = document.getElementById("edit-form");
       const profileInfo = document.getElementById("profile-info");
@@ -96,7 +128,7 @@
         backButton.style.display = "block";
       } else {
         editForm.style.display = "none";
-        profileInfo.style.display = "block";  
+        profileInfo.style.display = "block";
         this.style.display = "block";
         backButton.style.display = "none";
       }
