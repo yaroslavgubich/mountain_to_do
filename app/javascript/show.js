@@ -98,7 +98,7 @@ function checkTaskStatus() {
 
 function setTaskCompleated() {
   // document.getElementById("mark_complete").checked = true;
-  document.getElementById("task_end_date").value = (new Date()).getFullYear() +"-"+convertDate((new Date()).getMonth()+1)+"-"+convertDate((new Date()).getDay());
+  document.getElementById("task_end_date").value = (new Date()).getFullYear() +"-"+convertDate((new Date()).getMonth()+1)+"-"+convertDate((new Date()).getDate());
   document.querySelector(".done-btn").style="display:none;";
   document.querySelector(".uncheckt-btn").style="display:inline-block;";
   calculateProgress();
@@ -106,7 +106,7 @@ function setTaskCompleated() {
 
 function setTaskNotCompleated() {
   // document.getElementById("mark_complete").checked = false;
-  document.getElementById("task_end_date").value = (new Date()).getFullYear() +"-"+convertDate((new Date()).getMonth()+1)+"-"+convertDate((new Date()).getDay()+1)
+  document.getElementById("task_end_date").value = (new Date()).getFullYear() +"-"+convertDate((new Date()).getMonth()+1)+"-"+convertDate((new Date()).getDate()+1)
   document.querySelector(".done-btn").style="display:inline-block;";
   document.querySelector(".uncheckt-btn").style="display:none;";
   calculateProgress();
@@ -145,6 +145,16 @@ function taskProgressCanvas(progress = 0) {
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 
+//Cleaning previous picture
+ctx.beginPath();
+ctx.strokeStyle = "#ffffff";
+for (inter = 0; inter <= 20; inter++) {
+  ctx.moveTo(0, 0+inter);
+  ctx.lineTo(20, 0+inter);
+}
+ctx.stroke();
+
+// Drawing mountains
 ctx.beginPath();
 ctx.moveTo(0, 20);
 ctx.strokeStyle = "#a6a6a6";
@@ -157,18 +167,15 @@ ctx.lineTo(16, 10);
 ctx.lineTo(14, 15);
 ctx.stroke();
 
+// Creating progress (fill mountain)
 ctx.beginPath();
 ctx.strokeStyle = "#4dc05a";
-
-
-// MAx i<=18
 if (!(progress <= 0)) {
   for (i=0, ii=0; i<= progress/5.5; i++, ii+=0.5) {
         ctx.moveTo(1+ii/1.6, 19-i);
         ctx.lineTo(16-ii, 19-i);
   }
 }
-
 ctx.stroke();
 
 
