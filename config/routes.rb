@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :tasks, only: [:edit, :update, :destroy, :create, :new, :show]
   end
 
+  delete 'users/:id/remove_profile_image', to: 'profiles#remove_profile_image', as: 'remove_profile_image'
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

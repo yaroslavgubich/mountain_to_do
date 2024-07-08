@@ -1,6 +1,17 @@
 <div class="container">
   <div class="page-container">
     <header>
+
+      <!-- Yaroslav progress bar -->
+        <div id="progress-bar-container">
+          <div class="progress" id="progress-bar">
+            <div class="progress-bar " id="progress-fill" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+            <!-- Counter for completed and uncompleted tasks -->
+            <p class='progress-bar-text'>
+              <small id="progress-text"></small>
+              </div>
+      <!--- End -->
+
       <div class="top-camera-gap"></div>
       <div class="content-center">
         <div class="header-label">Progress</div>
@@ -89,29 +100,27 @@
 
           </div>
         </div>
-      </article>
-    </section>
+
+    <footer>
+      <div class="nav">
+        <div class="nav-box">
+          <a href="/goals">
+            <div class="all-mountains-btn"></div>
+          </a>
+        </div>
+        <div class="nav-box">
+          <a href="/goals/new">
+            <div class="add-task-btn"></div>
+          </a>
+        </div>
+        <div class="nav-box">
+          <a href="/profile">
+            <div class="profile-btn"></div>
+          </a>
+        </div>
+      </div>
+    </footer>
   </div>
-
-  <footer>
-    <div class="nav">
-      <div class="nav-box">
-        <a href="/goals">
-          <div class="all-mountains-btn"></div>
-        </a>
-      </div>
-
-      <div class="nav-box">
-        <a href="/goals/new">
-          <div class="add-task-btn"></div>
-        </a>
-      </div>
-
-      <div class="nav-box">
-        <a href="/profile">
-          <div class="profile-btn"></div>
-        </a>
-      </div>
-    </div>
-  </footer>
-</div>
+  <script src="progress.js"></script>
+</body>
+</html>
