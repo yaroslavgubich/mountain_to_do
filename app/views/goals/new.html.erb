@@ -82,32 +82,33 @@
         <div class="section-content">
           <div class="selection-content-box">
             <%= form.fields_for :tasks do |task_form| %>
-              <!-- This section is hidden and only serves to allow the form_with helper to properly generate nested attributes for tasks -->
+
+
+              <!-- Goal task deadline and add button -->
+              <div class="field">
+                <div class="two-elements">
+                  <span> </span>
+                  <button type="button" onClick="addTask();" style="margin-bottom: 8px; color: #fff; font-weight: bold;">Add task</button>
+                </div>
+              </div>
+
+              <!-- list of tasks for this goal -->
+              <div id="tasks-list">
+                <div class="box-underline" id="task_nr1">
+                  <div class="two-elements">
+                    <input type="date" id="nm1_deadline" name="deadline" class="new-mountain-input">
+                    <input type="text" id="nm1_time_left" name="time_left" value="" class="time-left-field" readonly>
+                  </div>
+
+                  <div class="two-elements">
+                    <input type="text" id="nm1_name" class="new-mountain-input" name="task_name" placeholder="Task name">
+                    <span class="del-task" onClick="deleteTask(1);">Delete</span>
+                  </div>
+                </div>
+              </div>
+
             <% end %>
 
-            <!-- Goal task deadline and add button -->
-            <div class="field">
-              <div class="two-elements">
-                <span></span>
-                <button type="button" style="margin-bottom: 8px; color: #fff; font-weight: bold;" data-action="click->goals#addTask">Add task</button>
-              </div>
-            </div>
-
-            <!-- List of tasks for this goal -->
-            <div id="tasks-list" data-target="goals.tasksList">
-              <div class="box-underline task-field" id="task_nr0">
-                <div class="two-elements">
-                  <input type="date" name="goal[tasks_attributes][0][deadline]" id="nm0_deadline" class="new-mountain-input">
-                  <input type="text" name="goal[tasks_attributes][0][time_left]" id="nm0_time_left" value="" class="time-left-field" readonly>
-                </div>
-                <div class="two-elements">
-                  <input type="text" name="goal[tasks_attributes][0][name]" id="nm0_name" class="new-mountain-input" placeholder="Task name">
-                  <span class="del-task" data-action="click->goals#removeTask">Delete</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
 
       <footer>
@@ -124,7 +125,6 @@
       </footer>
     <% end %>
   </div>
-
   <!-- Task template for Stimulus -->
   <template id="task-template" data-target="goals.taskTemplate">
     <div class="box-underline task-field" id="task_nrTEMPLATE_INDEX">
