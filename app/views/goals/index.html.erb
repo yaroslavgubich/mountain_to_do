@@ -49,12 +49,30 @@
           </div>
         </div>
 
-        <!-- All mountains list -->
+      <!-- All mountains list -->
         <div class="mountains-container">
   <% @goals.each do |goal| %>
     <div class="list-content-box">
       <div class="list-content-claster mountain-label" style="width: 10%;">
-        <span style="color:#<%= goal.completed ? '00a499' : 'D3D3D3' %>; font-size: 2rem;">&#9864;</span>
+        <span> <div class="circular">
+            <div class="inner"></div>
+            <div class="outer"></div>
+            <div class="numb">
+               0%
+            </div>
+            <div class="circle">
+               <div class="dot">
+                  <span></span>
+               </div>
+               <div class="bar left">
+                  <div class="progress"></div>
+               </div>
+               <div class="bar right">
+                  <div class="progress"></div>
+               </div>
+            </div>
+         </div>
+         </span>
       </div>
 
       <div class="list-content-claster mountain-label" style="width: 75%">
@@ -71,7 +89,9 @@
     </div>
   <% end %>
 </div>
-<script>function toggleDropdown(event, id) {
+<script>
+
+function toggleDropdown(event, id) {
   document.querySelectorAll('.dropdown-content').forEach(function (dropdown) {
     if (dropdown.id !== id) {
       dropdown.classList.remove('show');
@@ -87,6 +107,18 @@ window.onclick = function(event) {
     });
   }
 }
+
+// Progress Bar Functionality
+const numb = document.querySelector(".numb");
+let counter = 0;
+setInterval(() => {
+  if(counter == 100) {
+    clearInterval();
+  }else{
+    counter+=1;
+    numb.textContent = counter + "%";
+  }
+}, 80);
 </script>
 
       </article>
