@@ -703,7 +703,7 @@ causing problems */
 }
 
 .circle .bar .progress, .dot span {
-  background: #00a499; /* TO CHANGE TO MATCH OVERALL DESIGN */
+  background: #1EDD88; /* TO CHANGE TO MATCH OVERALL DESIGN */
 }
 
 .circle .left .progress {
@@ -738,7 +738,7 @@ causing problems */
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 20%; /* 50% was */
+  width: 20%;
   height: 5px;
   margin-top: -2.5px;
   animation: dor 8s linear both;
