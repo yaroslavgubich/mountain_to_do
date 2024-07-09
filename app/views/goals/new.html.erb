@@ -81,7 +81,7 @@
                 <div class="box-underline task-field" data-new-record="true">
                   <div class="two-elements">
                     <%= task_form.date_field :deadline, class: "new-mountain-input" %>
-                    
+
                   </div>
                   <div class="two-elements">
                     <%= task_form.text_field :name, class: "new-mountain-input", placeholder: "Task name" %>
@@ -92,7 +92,10 @@
               <% end %>
             </div>
           </div>
-          <button type="button" data-action="click->tasks#addTask">Add task</button>  
+          <div class="two-elements">
+            <span></span>
+            <button type="button" data-action="click->tasks#addTask" style="margin: 0 8px 8px 0; color: #fff; font-weight: bold;">Add task</button>
+          </div>
         </div>
       </section>
 

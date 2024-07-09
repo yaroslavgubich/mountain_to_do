@@ -425,7 +425,7 @@ ul > li > div > a {
   font-weight: bold;
 }
 
-.selection-content-box > .field > .two-elements button {
+.two-elements > button {
   width: 42%;
   height: 2.2rem;
   border: 0px;
