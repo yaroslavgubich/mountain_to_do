@@ -1,4 +1,4 @@
-<div class="container" data-controller="goals">
+<div class="container" data-controller="tasks">
   <div class="page-container">
 
     <header>
@@ -6,7 +6,6 @@
       <div class="content-center">
         <span class="header-label">New mountain</span>
         <span class="vertical-menu-btn" onClick="menuOption();">
-
           <!-- Dropdown content -->
           <div id="login_dropdown_content">
             <ul>
@@ -31,7 +30,6 @@
               </li>
             </ul>
           </div>
-
         </span>
       </div>
       <div class="footer-img-box content-center">
@@ -55,19 +53,16 @@
         <!-- First input block -->
         <div class="section-content">
           <div class="selection-content-box">
-
             <!-- Goal name -->
             <div class="field">
               <%= form.label :name %>
               <%= form.text_field :name %>
             </div>
-
             <!-- Goal start date -->
             <div class="field">
               <%= form.label :start_date %>
               <%= form.date_field :start_date %>
             </div>
-
             <!-- Goal end date -->
             <div class="field">
               <%= form.label :deadline %>
@@ -81,34 +76,24 @@
         <!-- Second input block -->
         <div class="section-content">
           <div class="selection-content-box">
-            <%= form.fields_for :tasks do |task_form| %>
-
-
-              <!-- Goal task deadline and add button -->
-              <div class="field">
-                <div class="two-elements">
-                  <span> </span>
-                  <button type="button" onClick="addTask();" style="margin-bottom: 8px; color: #fff; font-weight: bold;">Add task</button>
-                </div>
-              </div>
-
-              <!-- list of tasks for this goal -->
-              <div id="tasks-list">
-                <div class="box-underline" id="task_nr1">
+            <div data-target="tasks.tasks">
+              <%= form.fields_for :tasks do |task_form| %>
+                <div class="box-underline task-field" data-new-record="true">
                   <div class="two-elements">
-                    <input type="date" id="nm1_deadline" name="deadline" class="new-mountain-input">
-                    <input type="text" id="nm1_time_left" name="time_left" value="" class="time-left-field" readonly>
+                    <%= task_form.date_field :deadline, class: "new-mountain-input" %>
+                    
                   </div>
-
                   <div class="two-elements">
-                    <input type="text" id="nm1_name" class="new-mountain-input" name="task_name" placeholder="Task name">
-                    <span class="del-task" onClick="deleteTask(1);">Delete</span>
+                    <%= task_form.text_field :name, class: "new-mountain-input", placeholder: "Task name" %>
+                    <span class="del-task" data-action="click->tasks#removeTask">Delete</span>
                   </div>
+                  <%= task_form.hidden_field :_destroy %>
                 </div>
-              </div>
-
-            <% end %>
-
+              <% end %>
+            </div>
+          </div>
+          <button type="button" data-action="click->tasks#addTask">Add task</button>  
+        </div>
       </section>
 
       <footer>
@@ -125,17 +110,19 @@
       </footer>
     <% end %>
   </div>
+
   <!-- Task template for Stimulus -->
-  <template id="task-template" data-target="goals.taskTemplate">
-    <div class="box-underline task-field" id="task_nrTEMPLATE_INDEX">
+  <template id="task-template" data-target="tasks.taskTemplate">
+    <div class="box-underline task-field" data-new-record="true">
       <div class="two-elements">
-        <input type="date" name="goal[tasks_attributes][TEMPLATE_INDEX][deadline]" class="new-mountain-input" id="nmTEMPLATE_INDEX_deadline">
-        <input type="text" name="goal[tasks_attributes][TEMPLATE_INDEX][time_left]" class="time-left-field" id="nmTEMPLATE_INDEX_time_left" readonly>
+        <input type="date" name="goal[tasks_attributes][TEMPLATE_INDEX][deadline]" class="new-mountain-input">
+        <input type="text" name="goal[tasks_attributes][TEMPLATE_INDEX][time_left]" class="time-left-field" readonly>
       </div>
       <div class="two-elements">
-        <input type="text" name="goal[tasks_attributes][TEMPLATE_INDEX][name]" class="new-mountain-input" id="nmTEMPLATE_INDEX_name" placeholder="Task name">
-        <span class="del-task" data-action="click->goals#removeTask">Delete</span>
+        <input type="text" name="goal[tasks_attributes][TEMPLATE_INDEX][name]" class="new-mountain-input" placeholder="Task name">
+        <span class="del-task" data-action="click->tasks#removeTask">Delete</span>
       </div>
+      <input type="hidden" name="goal[tasks_attributes][TEMPLATE_INDEX][_destroy]" value="false">
     </div>
   </template>
 </div>
