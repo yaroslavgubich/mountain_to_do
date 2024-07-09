@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
-  before_action :set_goal, only: [:new, :create, :show, :edit, :update, :destroy]
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_goal, only: %i[new create show edit update destroy]
+  before_action :set_task, only: %i[show edit update destroy]
 
   def index
     @tasks = Task.all
@@ -15,6 +15,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to @goal, notice: 'Task was successfully created.'
     else
+      puts @task.errors.full_messages # Log errors for debugging
       render :new
     end
   end
@@ -51,6 +52,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :deadline, :completed)
+    params.require(:task).permit(:name, :deadline, :completed,
+                                 tasks_attributes: %i[id name deadline completed _destroy])
   end
 end
