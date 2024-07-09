@@ -347,8 +347,8 @@ ul > li > div > a {
 
 .add-task-btn {
   display: inline-block;
-  width: 6rem;
-  height: 6rem;
+  width: 4rem;
+  height: 4rem;
   background-image: url("add_new.png");
   background-repeat: no-repeat;
   background-position: center;
@@ -359,8 +359,8 @@ ul > li > div > a {
 
 .profile-btn {
   display: inline-block;
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
   background-image: url("account.png");
   background-repeat: no-repeat;
   background-position: center;
