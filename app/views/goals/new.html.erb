@@ -76,12 +76,16 @@
         <!-- Second input block -->
         <div class="section-content">
           <div class="selection-content-box">
+            <div class="two-elements">
+              <span></span>
+              <button type="button" data-action="click->tasks#addTask" style=" color: #fff; font-weight: bold;">Add task</button>
+            </div>
             <div data-target="tasks.tasks">
               <%= form.fields_for :tasks do |task_form| %>
                 <div class="box-underline task-field" data-new-record="true">
                   <div class="two-elements">
                     <%= task_form.date_field :deadline, class: "new-mountain-input" %>
-
+                    <span></span>
                   </div>
                   <div class="two-elements">
                     <%= task_form.text_field :name, class: "new-mountain-input", placeholder: "Task name" %>
@@ -91,10 +95,6 @@
                 </div>
               <% end %>
             </div>
-          </div>
-          <div class="two-elements">
-            <span></span>
-            <button type="button" data-action="click->tasks#addTask" style="margin: 0 8px 8px 0; color: #fff; font-weight: bold;">Add task</button>
           </div>
         </div>
       </section>
