@@ -12,7 +12,7 @@ export default class extends Controller {
   addTask(event) {
     event.preventDefault()
     const content = this.taskTemplateTarget.innerHTML.replace(/TEMPLATE_INDEX/g, new Date().getTime())
-    this.tasksTarget.insertAdjacentHTML('beforeend', content)
+    this.tasksTarget.insertAdjacentHTML('afterbegin', content)
   }
 
   removeTask(event) {

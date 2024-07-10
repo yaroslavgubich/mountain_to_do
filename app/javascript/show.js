@@ -190,7 +190,7 @@ ctx.stroke();
 
 // Creating progress (fill mountain)
 ctx.beginPath();
-ctx.strokeStyle = "#4dc05a";
+ctx.strokeStyle = "#00a499";
 if (!(progress <= 0)) {
   for (i=0, ii=0; i<= progress/5.5; i++, ii+=0.5) {
         ctx.moveTo(1+ii/1.6, 19-i);
