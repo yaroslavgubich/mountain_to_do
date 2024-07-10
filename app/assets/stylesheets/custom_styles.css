@@ -159,6 +159,18 @@ input:focus {
   opacity: 0.8;
 }
 
+.img-logout {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.7rem;
+  background-image: url("logout.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.5;
+}
+
 .responsive-text {
   font-size: 1.4rem;
   font-weight: bold;
@@ -274,7 +286,7 @@ input:focus {
   padding: 0px;
 }
 
-ul > li > div > a {
+ul > li > div > a{
   text-decoration: none;
   color: #3d444c;
 }
