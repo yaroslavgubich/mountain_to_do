@@ -39,7 +39,7 @@
 
     <section>
       <article>
-  <%= form_with model: [@goal, @task], method: "patch" do |f|  %>
+       <%= form_with model: [@goal, @task], method: "patch" do |f|  %>
         <div>
           <div class="content-center label-text-color fs-4 fw-bold mt-3">
             <div>
@@ -122,15 +122,15 @@
             <span>
               <!--<%= link_to '', edit_goal_path(@goal), class: "edit-btn" %>-->
               <div class="edit-btn" onClick="editMountanTask();"></div>
-              <%= button_tag type: :submit, class: "save-btn" %>
+              <%= button_tag "",type: :submit, class: "save-btn" %>
 
-              </span>
+            </span>
 
             <span>
               <div class="done-btn" onClick="setTaskCompleated();"></div>
               <div class="uncheckt-btn" onClick="setTaskNotCompleated()"></div>
             </span>
-            <% end %>
+           <% end %>
           </div>
         <div>
 
@@ -198,14 +198,3 @@
 <script>
   document.addEventListener('DOMContentLoaded', calculateProgress() );
 </script>
-
-
-
-
-
-
-
-
-<!-- Very bad style put in one file  JavaScript and CSS in one file. Don't mix all in one.
-    If you need script which will execute after load this page just add function <script> function() </script>
-    and keep JS in other file. -->
