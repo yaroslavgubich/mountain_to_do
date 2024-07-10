@@ -4,6 +4,11 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["tasks", "taskTemplate"]
 
+  connect() {
+
+    console.log("task Controller connected. Initial task count:" );
+  }
+
   addTask(event) {
     event.preventDefault()
     const content = this.taskTemplateTarget.innerHTML.replace(/TEMPLATE_INDEX/g, new Date().getTime())

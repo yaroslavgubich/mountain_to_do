@@ -39,7 +39,7 @@
 
     <section>
       <article>
-
+  <%= form_with model: [@goal, @task], method: "patch" do |f|  %>
         <div>
           <div class="content-center label-text-color fs-4 fw-bold mt-3">
             <div>
@@ -63,7 +63,8 @@
 
             <div class="two-elements">
               <span id="task_name" class="del-task" style="text-decoration: none;"> <%= @task.name %> </span>
-              <input type="text" id="new-task-name" class="del-task" style="text-decoration: none;" value="<%= @task.name %>">
+              <%# <input type="text" id="new-task-name" class="del-task" style="text-decoration: none;" value="<%= @task.name %>
+              <%= f.text_field :name, id: "new-task-name", class: "del-task", value: @task.name %>
               <span class="del-task" id="task_compleated" style="text-decoration: none;"> <%= @task.completed ? "Complete" : "Not Complete" %> </span>
             </div>
           </div>
@@ -81,22 +82,32 @@
             <div class="two-elements show-info-field">
               <span>Task start date:</span>
               <span>
-                  <input type="date" style="text-align: right;
+                  <!--<input type="date" style="text-align: right;
                                             border: none;
                                             font-size: 1rem;
                                             color: #a6a6a6;
-                                            background-color: #fff;" id="task_start_date" disabled>
+                                            background-color: #fff;" id="task_start_date" disabled>-->
+              <%= f.date_field :start_date, id: "task_start_date",style: "text-align: right;
+                                            border: none;
+                                            font-size: 1rem;
+                                            color: #a6a6a6;
+                                            background-color: #fff;", disabled: true   %>
               </span>
             </div>
 
             <div class="two-elements show-info-field">
               <span>Task end date:</span>
               <span>
-                <input type="date" style="text-align: right;
+                <!--<input type="date" style="text-align: right;
                                               border: none;
                                               font-size: 1rem;
                                               color: #a6a6a6;
-                                              background-color: #fff;" id="task_end_date" disabled>
+                                              background-color: #fff;" id="task_end_date" disabled>-->
+              <%= f.date_field :deadline, id: "task_end_date",style: "text-align: right;
+                                            border: none;
+                                            font-size: 1rem;
+                                            color: #a6a6a6;
+                                            background-color: #fff;", disabled: true   %>
               </span>
             </div>
           </div>
@@ -111,13 +122,15 @@
             <span>
               <!--<%= link_to '', edit_goal_path(@goal), class: "edit-btn" %>-->
               <div class="edit-btn" onClick="editMountanTask();"></div>
-              <div class="save-btn" OnClick=""></div>
+              <%= button_tag type: :submit, class: "save-btn" %>
+
               </span>
 
             <span>
               <div class="done-btn" onClick="setTaskCompleated();"></div>
               <div class="uncheckt-btn" onClick="setTaskNotCompleated()"></div>
             </span>
+            <% end %>
           </div>
         <div>
 
@@ -196,116 +209,3 @@
 <!-- Very bad style put in one file  JavaScript and CSS in one file. Don't mix all in one.
     If you need script which will execute after load this page just add function <script> function() </script>
     and keep JS in other file. -->
-<script>
-  document.addEventListener('turbo:load', initializeDeleteModal);
-  document.addEventListener('DOMContentLoaded', initializeDeleteModal);
-
-  function initializeDeleteModal() {
-    var modal = document.getElementById("confirmationModal");
-    var confirmButton = document.getElementById("confirmDelete");
-    var cancelButton = document.getElementById("cancelDelete");
-    var closeButton = document.querySelector(".close");
-    var deleteLink;
-
-    document.querySelectorAll('.delete-task').forEach(function(link) {
-      link.addEventListener('click', function(event) {
-        event.preventDefault();
-        deleteLink = link;
-        modal.style.display = "block";
-      });
-    });
-
-    confirmButton.addEventListener('click', function() {
-      modal.style.display = "none";
-      var form = document.createElement('form');
-      form.method = 'post';
-      form.action = deleteLink.href;
-
-      var methodInput = document.createElement('input');
-      methodInput.type = 'hidden';
-      methodInput.name = '_method';
-      methodInput.value = 'delete';
-      form.appendChild(methodInput);
-
-      var csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-      var csrfInput = document.createElement('input');
-      csrfInput.type = 'hidden';
-      csrfInput.name = 'authenticity_token';
-      csrfInput.value = csrfToken;
-      form.appendChild(csrfInput);
-
-      document.body.appendChild(form);
-      form.submit();
-    });
-
-    cancelButton.addEventListener('click', function() {
-      modal.style.display = "none";
-    });
-
-    closeButton.addEventListener('click', function() {
-      modal.style.display = "none";
-    });
-
-    window.addEventListener('click', function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    });
-  }
-</script>
-
-<style>
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 300px;
-    border-radius: 10px;
-    text-align: center;
-  }
-
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-  }
-
-  .modal-buttons {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-  }
-
-  .btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-
-  .btn-small {
-    font-size: 14px;
-  }
-</style>
