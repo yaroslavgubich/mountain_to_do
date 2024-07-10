@@ -53,7 +53,7 @@
               <div class="box-underline">
 
                 <div style="display: inline-block; margin: 4px;">
-                  <input type="checkbox" <%= task.completed ? 'checked' : '' %> />
+                  <input type="checkbox" class="task-checkbox" data-task-id="<%= task.id %>" data-goal-id="<%= @goal.id %>" <%= task.completed ? 'checked' : '' %> />
                 </div>
 
                 <div style="display: inline-block; width: 91%;">
@@ -67,30 +67,11 @@
                     <span> <%= link_to 'Delete', goal_task_path(@goal, task), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "del-task" %> </span>
                   </div>
                 </div>
-
-
-
-              <!--
-              <div class="list-content-box">
-                <div class="list-content-claster mountain-label" style="width: 10%;">
-                  <input type="checkbox" <%= task.completed ? 'checked' : '' %> />
-                </div>
-                <div class="list-content-claster mountain-label" style="width: 75%">
-                  <%= link_to task.name, goal_task_path(@goal, task) %> -
-                  <span><%= task.deadline.present? ? task.deadline.strftime("%d %b %Y") : "No deadline" %></span>
-                </div>
-                <div class="list-content-claster mountan-menu" style="width: 10%;">
-                  <%= link_to 'Delete', goal_task_path(@goal, task), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-small" %>
-                </div>
-                -->
-
               </div>
             <% end %>
 
           </div>
         </div>
-
-
 
 
     <footer>

@@ -51,10 +51,10 @@
 
       <!-- All mountains list -->
         <div class="mountains-container">
-  <% @goals.each do |goal| %>
-    <div class="list-content-box">
-      <div class="list-content-claster mountain-label" style="width: 10%;">
-        <span> <div class="circular" data-percentage="<%= goal.completion_percentage %>">
+        <% @goals.each do |goal| %>
+          <div class="list-content-box">
+            <div class="list-content-claster mountain-label" style="width: 10%;">
+              <span> <div class="circular" data-percentage="<%= goal.completion_percentage %>">
             <div class="inner"></div>
             <div class="outer"></div>
             <div class="numb">
@@ -107,38 +107,6 @@ window.onclick = function(event) {
     });
   }
 }
-
-// Progress Bar Functionality
-// const numb = document.querySelector(".numb");
-// let counter = 0;
-// setInterval(() => {
-  //if(counter == 100) {
-    //clearInterval();
-  //}else{
-    //counter+=1;
-    //numb.textContent = counter + "%";
-  //}
-//}, 80);
-
-// Progress Bar Functionality
-  document.addEventListener('DOMContentLoaded', function() {
-    const circulars = document.querySelectorAll(".circular");
-
-    circulars.forEach(circular => {
-      const numb = circular.querySelector(".numb");
-      const percentage = circular.dataset.percentage;
-      let counter = 0;
-      const interval = setInterval(() => {
-        if (counter == percentage) {
-          clearInterval(interval);
-        } else {
-          counter += 1;
-          numb.textContent = counter + "%";
-        }
-      }, 40);
-    });
-  });
-
 
 </script>
 

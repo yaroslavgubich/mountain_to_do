@@ -708,7 +708,12 @@ causing problems */
 
 .circle .left .progress {
   z-index: 1;
-  animation: left 4s linear both;
+  transform: rotate(0deg);
+}
+
+.circle .left {
+  z-index: 3;
+  transform: rotate(180deg);
 }
 
 @keyframes left {
@@ -719,12 +724,11 @@ causing problems */
 
 .circle .right {
   z-index: 3;
-  transform: rotate(180deg);
+  transform: rotate(0deg);
 }
 
 .circle .right .progress {
-  animation: right 4s linear both;
-  animation-delay: 4s;
+  transform: rotate(180deg);
 }
 
 @keyframes right {
@@ -741,7 +745,6 @@ causing problems */
   width: 20%;
   height: 5px;
   margin-top: -2.5px;
-  animation: dor 8s linear both;
   transform-origin: 0% 50%;
 }
 
