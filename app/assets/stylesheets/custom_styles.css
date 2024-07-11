@@ -651,16 +651,16 @@ causing problems */
 
 /* Modal styles */
 .modal {
-  display: none; 
-  position: fixed; 
-  z-index: 1; 
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgb(0,0,0); 
-  background-color: rgba(0,0,0,0.4); 
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
   padding-top: 60px;
 }
 
@@ -669,7 +669,7 @@ causing problems */
   margin: 5% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; 
+  width: 80%;
 }
 
 .close {
@@ -696,4 +696,138 @@ causing problems */
 }
 
 }
-  
+
+/* Index Progress Bar */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.circular {
+  height: 40px;
+  width: 40px;
+  position: relative;
+}
+
+.circular .inner, .circular .outer, .circular .circle {
+  position: absolute;
+  z-index: 6;
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  box-shadow: inset 0 1px 0 rgba(0,0,0,0.2);
+}
+
+.circular .inner {
+  top: 50%;
+  left: 50%;
+  height: 30px;
+  width: 30px;
+  margin: -15px 0 0 -15px;
+  background-color: #dde6f0;
+  border-radius: 100%;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+}
+
+.circular .circle {
+  z-index: 1;
+  box-shadow: none;
+}
+
+.circular .numb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  font-size: 11px;
+  font-weight: 500;
+  color: black;
+}
+
+.circular .bar {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  border-radius: 100%;
+  clip: rect(0px, 40px, 40px, 20px);
+}
+
+.circular .bar .progress {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  clip: rect(0px, 20px, 40px, 0px);
+}
+
+.circle .bar .progress, .dot span {
+  background: #1EDD88; /* TO CHANGE TO MATCH OVERALL DESIGN */
+}
+
+.circle .left .progress {
+  z-index: 1;
+  transform: rotate(0deg);
+}
+
+.circle .left {
+  z-index: 3;
+  transform: rotate(180deg);
+}
+
+@keyframes left {
+  100% {
+    transform: rotate(180deg)
+  }
+}
+
+.circle .right {
+  z-index: 3;
+  transform: rotate(0deg);
+}
+
+.circle .right .progress {
+  transform: rotate(180deg);
+}
+
+@keyframes right {
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+.circle .dot {
+  z-index: 2;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 20%;
+  height: 5px;
+  margin-top: -2.5px;
+  transform-origin: 0% 50%;
+}
+
+.circle .dot span {
+  position: absolute;
+  right: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 100%;
+}
+
+@keyframes dot {
+  0% {
+    transform: rotate(-90deg);
+  }
+  50% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(270deg);
+    z-index: 4;
+  }
+}

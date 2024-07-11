@@ -168,26 +168,88 @@ function newTaskCounterReset() {
   console.warn(tasks_list);
 
 }
-// Progress bar
 
-// document.addEventListener('DOMContentLoaded', function () {
-//   const checkboxes = document.querySelectorAll('.task-checkbox');
-//   const progressFill = document.getElementById('progress-fill');
-//   const progressText = document.getElementById('progress-text');
+// Save task checkbox function //
+document.addEventListener('DOMContentLoaded', function() {
+  function initializeCheckboxListeners() {
+    const checkboxes = document.querySelectorAll('.task-checkbox');
 
-//   function updateProgressBar() {
-//     const totalTasks = checkboxes.length;
-//     const completedTasks = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
-//     const percentComplete = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
+    checkboxes.forEach(function(checkbox) {
+      checkbox.addEventListener('change', function() {
+        const taskId = this.dataset.taskId;
+        const goalId = this.dataset.goalId;
+        const completed = this.checked;
 
-//     progressFill.style.width = `${percentComplete}%`;
-//     progressText.textContent = `${percentComplete.toFixed(2)}% Complete (${completedTasks} / ${totalTasks} Tasks)`;
-//   }
+        fetch(`/goals/${goalId}/tasks/${taskId}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+          },
+          body: JSON.stringify({ task: { completed: completed } })
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (data.status === 'ok') {
+            console.log(`Task ${taskId} updated successfully`);
+          } else {
+            console.error('Failed to update task');
+          }
+        })
+        .catch(error => console.error('Error:', error));
+        });
+      });
+    }
 
-//   checkboxes.forEach(checkbox => {
-//     checkbox.addEventListener('change', updateProgressBar);
-//   });
+    initializeCheckboxListeners();
 
+    document.addEventListener('turbo:load', function() {
+      initializeCheckboxListeners();
+    });
+});
+
+// Circle Progress Bar Index Functionality
+function initializeProgressBars() {
+  const circulars = document.querySelectorAll(".circular");
+
+  circulars.forEach(circular => {
+    const numb = circular.querySelector(".numb");
+    const leftProgress = circular.querySelector(".left .progress");
+    const rightProgress = circular.querySelector(".right .progress");
+    const dot = circular.querySelector(".dot span");
+    const percentage = parseFloat(circular.dataset.percentage);
+    let counter = 0;
+
+    const updateProgress = (percent) => {
+      const rotateDeg = (percent / 100) * 360;
+      const rotateRight = Math.min(rotateDeg, 180);
+      const rotateLeft = Math.max(rotateDeg - 180, 0);
+
+      leftProgress.style.transform = `rotate(${rotateLeft}deg)`;
+      rightProgress.style.transform = `rotate(${rotateRight}deg)`;
+      dot.style.transform = `rotate(${rotateDeg - 90}deg)`;
+      numb.textContent = `${percent}%`;
+    };
+
+    const interval = setInterval(() => {
+      if (counter >= percentage) {
+        clearInterval(interval);
+      } else {
+        counter += 1;
+        updateProgress(counter);
+      }
+    }, 70);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initializeProgressBars);
+document.addEventListener('turbo:load', initializeProgressBars); // for Turbo
+document.addEventListener('ajaxComplete', initializeProgressBars); // For handling custom AJAX completions
 //   // Initialize progress bar on page load
 //   updateProgressBar();
 // });

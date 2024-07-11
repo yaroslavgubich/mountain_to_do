@@ -50,7 +50,7 @@
             <% @goal.tasks.order(:created_at).each do |task| %>
               <div class="box-underline">
                 <div style="display: inline-block; margin: 4px;">
-                  <input type="checkbox" <%= task.completed ? 'checked' : '' %> />
+                  <input type="checkbox" class="task-checkbox" data-task-id="<%= task.id %>" data-goal-id="<%= @goal.id %>" <%= task.completed ? 'checked' : '' %> />
                 </div>
 
                 <div style="display: inline-block; width: 91%;">
@@ -117,4 +117,9 @@
       </div>
     </footer>
   </div>
+<<<<<<< HEAD
+</body>
+</html>
+=======
 </div>
+>>>>>>> master
