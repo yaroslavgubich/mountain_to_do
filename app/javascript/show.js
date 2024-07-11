@@ -71,18 +71,39 @@ function convertDate (date_d_m) {
 }
 
 // Calculate progress percentage
-function getProgressPercentage (start_date, endDate) {
-  let dif_bettveen_dates = Date.parse(endDate) - Date.parse(start_date);
-  const one_percent = dif_bettveen_dates / 100;
+function getProgressPercentage(start_date, end_date) {
+  // Parse the start and end dates
+  let startDate = Date.parse(start_date);
+  let endDate = Date.parse(end_date);
 
-  // Get date time till now
-  let till_now_sec = new Date();
-  let till_start_date_sec = Date.parse(start_date);
+  // Ensure valid dates
+  if (isNaN(startDate) || isNaN(endDate)) {
+    console.error("Invalid dates provided");
+    return 0;
+  }
 
-  // Calculate how many percent done
-  const done_percent = (till_now_sec-till_start_date_sec) / one_percent;
+  // Calculate the total duration between the start and end dates
+  let totalDuration = endDate - startDate;
 
-  return Math.floor(done_percent);
+  // Get the current time
+  let currentTime = new Date().getTime();
+
+  // Calculate the elapsed time from the start date to now
+  let elapsedTime = currentTime - startDate;
+
+  // If the start date is in the future, return 0% complete
+  if (elapsedTime < 0) {
+    return 0;
+  }
+
+  // Calculate the completion percentage
+  let completionPercentage = (elapsedTime / totalDuration) * 100;
+
+  // Cap the completion percentage at 100% if the current time is after the end date
+  completionPercentage = Math.min(completionPercentage, 100);
+
+  // Round to the nearest integer and return
+  return Math.round(completionPercentage);
 }
 
 function checkTaskStatus() {
@@ -169,7 +190,7 @@ ctx.stroke();
 
 // Creating progress (fill mountain)
 ctx.beginPath();
-ctx.strokeStyle = "#4dc05a";
+ctx.strokeStyle = "#00a499";
 if (!(progress <= 0)) {
   for (i=0, ii=0; i<= progress/5.5; i++, ii+=0.5) {
         ctx.moveTo(1+ii/1.6, 19-i);

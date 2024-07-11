@@ -26,12 +26,12 @@
               </li>
               <li>
                 <div class="content-left mt-2">
+                  <div class="img-logout"></div>
                   <%= form_with url: destroy_user_session_path, method: :delete, local: true do %>
-                    <%= submit_tag 'Logout', class: 'btn btn-link', style: 'padding: 0; color: inherit; text-decoration: none;' %>
+                    <%= submit_tag 'Logout', class: 'btn btn-link label-text-color', style: 'padding: 0; text-decoration: none; font-size: 1.2rem; font-weight: bold;' %>
                   <% end %>
                 </div>
               </li>
-
             </ul>
           </div>
 
@@ -79,42 +79,6 @@
 
         </div>
       </div>
-    </section>
-
-    <section>
-      <!-- Second input block -->
-      <div class="section-content">
-        <div class="selection-content-box">
-        <%= form.fields_for :tasks do |task_form| %>
-
-        <%= task_form.hidden_field :_destroy %>
-        <!-- Goal task name -->
-        <div class="field">
-          <%= task_form.label :name %>
-          <%= task_form.text_field :name %>
-        </div>
-
-        <!-- Goal task deadline and add button -->
-        <div class="field">
-          <%= task_form.label :deadline %>
-          <div class="two-elements">
-            <%= task_form.date_field :deadline %>
-            <button type="button" ><a href="#">Add task</a></button>
-          </div>
-        </div>
-
-      <div class="field" style="text-align: center;">
-        <%= task_form.label :completed %>
-        <%= task_form.check_box :completed %>
-      </div>
-
-      <!-- list of tasks for this goal -->
-
-      <!--------------------------------->
-
-        <% end %>
-      </div>
-    </div>
     </section>
   </div>
 

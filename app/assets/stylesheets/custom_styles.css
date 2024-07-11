@@ -159,6 +159,18 @@ input:focus {
   opacity: 0.8;
 }
 
+.img-logout {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.7rem;
+  background-image: url("logout.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.5;
+}
+
 .responsive-text {
   font-size: 1.4rem;
   font-weight: bold;
@@ -274,7 +286,7 @@ input:focus {
   padding: 0px;
 }
 
-ul > li > div > a {
+ul > li > div > a{
   text-decoration: none;
   color: #3d444c;
 }
@@ -347,8 +359,8 @@ ul > li > div > a {
 
 .add-task-btn {
   display: inline-block;
-  width: 6rem;
-  height: 6rem;
+  width: 4rem;
+  height: 4rem;
   background-image: url("add_new.png");
   background-repeat: no-repeat;
   background-position: center;
@@ -359,8 +371,8 @@ ul > li > div > a {
 
 .profile-btn {
   display: inline-block;
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
   background-image: url("account.png");
   background-repeat: no-repeat;
   background-position: center;
@@ -425,7 +437,7 @@ ul > li > div > a {
   font-weight: bold;
 }
 
-.selection-content-box > .field > .two-elements button {
+.two-elements > button {
   width: 42%;
   height: 2.2rem;
   border: 0px;
@@ -511,14 +523,21 @@ ul > li > div > a {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
+  right: 28px;
+  top: 15px;
   min-width: 120px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  border: 1px solid #3d444c;
+  color: #3d444c;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 16px;
 }
 
 .dropdown-content a {
-  color: black;
+  color: #3D444C;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -536,7 +555,7 @@ ul > li > div > a {
 causing problems */
 /* Responsive design */
 /* if device has a touch screen */
- @media (any-pointer: coarse) { */
+ @media (any-pointer: coarse) {
   /* do your own styles */
   body {
     display: flex;
