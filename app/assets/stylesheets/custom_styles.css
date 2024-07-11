@@ -766,7 +766,7 @@ causing problems */
 }
 
 .circle .bar .progress, .dot span {
-  background: #1EDD88; /* TO CHANGE TO MATCH OVERALL DESIGN */
+  background: #00A499; /* TO CHANGE TO MATCH OVERALL DESIGN */
 }
 
 .circle .left .progress {

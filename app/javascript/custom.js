@@ -236,6 +236,8 @@ function initializeProgressBars() {
       numb.textContent = `${percent}%`;
     };
 
+    updateProgress(0); // To ensure it starts at 0%
+
     const interval = setInterval(() => {
       if (counter >= percentage) {
         clearInterval(interval);
