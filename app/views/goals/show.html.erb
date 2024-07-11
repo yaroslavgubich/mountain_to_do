@@ -32,16 +32,13 @@
           </div>
         </span>
       </div>
-
-
       <div class="footer-img-box content-center">
         <div class="new-mountain-img"></div>
       </div>
     </header>
 
-     <section>
+    <section data-controller="tasks">
       <article>
-
         <div>
           <div class="content-center label-text-color fs-4 fw-bold mt-3">
             <%= @goal.name %>
@@ -50,11 +47,8 @@
 
         <div class="tasks-list">
           <div class="mountains-container">
-
             <% @goal.tasks.order(:created_at).each do |task| %>
-
               <div class="box-underline">
-
                 <div style="display: inline-block; margin: 4px;">
                   <input type="checkbox" class="task-checkbox" data-task-id="<%= task.id %>" data-goal-id="<%= @goal.id %>" <%= task.completed ? 'checked' : '' %> />
                 </div>
@@ -72,10 +66,36 @@
                 </div>
               </div>
             <% end %>
-
           </div>
         </div>
+      </article>
+    </section>
 
+    <!-- Modal Structure -->
+    <div id="taskModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeModalBtn">&times;</span>
+        <h1>Add task</h1>
+        <%= form_with model: @goal, local: true do |form| %>
+          <div class="selection-content-box">
+            <div data-target="tasks.tasks">
+              <div class="box-underline task-field" data-new-record="true">
+                <div class="two-elements">
+                  <%= form.date_field :deadline, class: "new-mountain-input", name: "goal[tasks_attributes][0][deadline]" %>
+                  <span></span>
+                </div>
+                <div class="two-elements">
+                  <%= form.text_field :name, class: "new-mountain-input", placeholder: "Task name", name: "goal[tasks_attributes][0][name]", value: "" %>
+                  <span class="del-task" data-action="click->tasks#removeTask">Delete</span>
+                </div>
+                <%= form.hidden_field :_destroy, value: false, name: "goal[tasks_attributes][0][_destroy]" %>
+              </div>
+            </div>
+          </div>
+          <%= form.submit 'Save Task', id: 'save-task-button', style: "background-color: #00A499; color: #fff; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer;" %>
+        <% end %>
+      </div>
+    </div>
 
     <footer>
       <div class="nav">
@@ -85,7 +105,7 @@
           </a>
         </div>
         <div class="nav-box">
-          <a href="/goals/new">
+          <a href="javascript:void(0);" id="openModalBtn">
             <div class="add-task-btn"></div>
           </a>
         </div>
@@ -97,5 +117,9 @@
       </div>
     </footer>
   </div>
+<<<<<<< HEAD
 </body>
 </html>
+=======
+</div>
+>>>>>>> master

@@ -250,3 +250,34 @@ function initializeProgressBars() {
 document.addEventListener('DOMContentLoaded', initializeProgressBars);
 document.addEventListener('turbo:load', initializeProgressBars); // for Turbo
 document.addEventListener('ajaxComplete', initializeProgressBars); // For handling custom AJAX completions
+//   // Initialize progress bar on page load
+//   updateProgressBar();
+// });
+
+
+// modals js for adding a new task
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  var modal = document.getElementById('taskModal');
+  var openModalBtn = document.getElementById('openModalBtn');
+  var closeModalBtn = document.getElementById('closeModalBtn');
+
+  if (openModalBtn) {
+    openModalBtn.addEventListener('click', function() {
+      modal.style.display = "block";
+    });
+  }
+
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', function() {
+      modal.style.display = "none";
+    });
+  }
+
+  window.addEventListener('click', function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  });
+});
