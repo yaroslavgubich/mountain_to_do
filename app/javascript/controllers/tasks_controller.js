@@ -5,8 +5,7 @@ export default class extends Controller {
   static targets = ["tasks", "taskTemplate"]
 
   connect() {
-
-    console.log("task Controller connected. Initial task count:" );
+    console.log("task Controller connected. Initial task count:");
   }
 
   addTask(event) {

@@ -191,3 +191,31 @@ function newTaskCounterReset() {
 //   // Initialize progress bar on page load
 //   updateProgressBar();
 // });
+
+
+// modals js for adding a new task
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  var modal = document.getElementById('taskModal');
+  var openModalBtn = document.getElementById('openModalBtn');
+  var closeModalBtn = document.getElementById('closeModalBtn');
+
+  if (openModalBtn) {
+    openModalBtn.addEventListener('click', function() {
+      modal.style.display = "block";
+    });
+  }
+
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', function() {
+      modal.style.display = "none";
+    });
+  }
+
+  window.addEventListener('click', function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  });
+});
