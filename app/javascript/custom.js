@@ -222,7 +222,9 @@ function initializeProgressBars() {
     const leftProgress = circular.querySelector(".left .progress");
     const rightProgress = circular.querySelector(".right .progress");
     const dot = circular.querySelector(".dot span");
+    const checkmark = circular.querySelector(".checkmark");
     const percentage = parseFloat(circular.dataset.percentage);
+    const goalId = circular.dataset.goalId;
     let counter = 0;
 
     const updateProgress = (percent) => {
@@ -234,6 +236,42 @@ function initializeProgressBars() {
       rightProgress.style.transform = `rotate(${rotateRight}deg)`;
       dot.style.transform = `rotate(${rotateDeg - 90}deg)`;
       numb.textContent = `${percent}%`;
+
+      if (percent === 100 && !localStorage.getItem(`goal-${goalId}-completed`)) {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+
+        checkmark.style.display = 'block';
+        checkmark.classList.add('draw');
+
+        setTimeout(() => {
+          showFlashMessage('Congratulations! Goal Achieved!');
+        }, 500);
+
+        localStorage.setItem(`goal-${goalId}-completed`, 'true');
+
+        // Mark the goal as completed in the backend
+        fetch(`/goals/${goalId}/complete`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+          },
+          body: JSON.stringify({ completed: true })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === 'ok') {
+            console.log(`Goal ${goalId} marked as completed`);
+          } else {
+            console.error('Failed to mark goal as completed');
+          }
+        })
+        .catch(error => console.error('Error:', error));
+      }
     };
 
     updateProgress(0); // To ensure it starts at 0%
@@ -249,9 +287,23 @@ function initializeProgressBars() {
   });
 }
 
+function showFlashMessage(message) {
+  const flashMessage = document.createElement('div');
+  flashMessage.classList.add('flash-message');
+  flashMessage.textContent = message;
+  document.body.appendChild(flashMessage);
+  flashMessage.style.display = 'block';
+
+  setTimeout(() => {
+    flashMessage.style.display = 'none';
+    document.body.removeChild(flashMessage);
+  }, 5000);
+}
+
 document.addEventListener('DOMContentLoaded', initializeProgressBars);
 document.addEventListener('turbo:load', initializeProgressBars); // for Turbo
 document.addEventListener('ajaxComplete', initializeProgressBars); // For handling custom AJAX completions
+
 //   // Initialize progress bar on page load
 //   updateProgressBar();
 // });

@@ -55,12 +55,10 @@
         <% @goals.each do |goal| %>
           <div class="list-content-box">
             <div class="list-content-claster mountain-label" style="width: 10%;">
-              <span> <div class="circular" data-percentage="<%= goal.completion_percentage %>">
+              <span> <div class="circular" data-percentage="<%= goal.completion_percentage %>" data-goal-id="<%= goal.id %>">
             <div class="inner"></div>
             <div class="outer"></div>
-            <div class="numb">
-               0%
-            </div>
+            <div class="numb">0%</div>
             <div class="circle">
                <div class="dot">
                   <span></span>
@@ -71,6 +69,7 @@
                <div class="bar right">
                   <div class="progress"></div>
                </div>
+               <div class="checkmark"></div>
             </div>
          </div>
          </span>
@@ -78,6 +77,9 @@
 
       <div class="list-content-claster mountain-label" style="width: 75%">
         <%= link_to goal.name, goal_path(goal) %>
+        <% if goal.completed %>
+          <div class="goal-completed-message">Well Done! Goal Completed!</div>
+        <% end %>
       </div>
 
       <div class="list-content-claster mountan-menu" style="width: 10%; position: relative;">
@@ -90,6 +92,7 @@
     </div>
   <% end %>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 <script>
 
 function toggleDropdown(event, id) {
