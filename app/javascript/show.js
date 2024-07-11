@@ -58,7 +58,7 @@ function calculateProgress () {
 
     task_end_day = null;
     checkTaskStatus();
-  }, 1000);
+  }, 0);
 }
 
 // Add 0 if day or month date less 10
