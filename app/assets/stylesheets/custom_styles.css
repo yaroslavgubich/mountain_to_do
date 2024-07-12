@@ -766,7 +766,7 @@ causing problems */
 }
 
 .circle .bar .progress, .dot span {
-  background: #1EDD88; /* TO CHANGE TO MATCH OVERALL DESIGN */
+  background: #00A499; /* TO CHANGE TO MATCH OVERALL DESIGN */
 }
 
 .circle .left .progress {
@@ -830,4 +830,65 @@ causing problems */
     transform: rotate(270deg);
     z-index: 4;
   }
+}
+
+/* Checkmark animation */
+.checkmark {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.5);
+  width: 24px;
+  height: 24px;
+}
+
+.checkmark.draw:before {
+  position: absolute;
+  width: 5px;
+  height: 12px;
+  transform: rotate(45deg);
+  transform-origin: left bottom;
+  border-right: 3px solid #1EDD88;
+  border-bottom: 3px solid #1EDD88;
+  content: '';
+  animation: checkmark 0.3s ease forwards;
+}
+
+@keyframes checkmark {
+  0% {
+    height: 0;
+    width: 0;
+  }
+  50% {
+    height: 12px;
+    width: 0;
+  }
+  100% {
+    height: 12px;
+    width: 5px;
+  }
+}
+
+.goal-completed-message {
+  color: #00A499;
+  font-weight: bold;
+  margin-left: 10px;
+  font-size: 10px;
+  text-align: left;
+}
+
+/* Flash message */
+.flash-message {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #00A499;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  z-index: 1000;
 }

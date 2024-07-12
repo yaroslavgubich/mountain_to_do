@@ -45,6 +45,15 @@ class GoalsController < ApplicationController
     redirect_to goals_url
   end
 
+  def complete
+    @goal = Goal.find(params[:id])
+    if @goal.update(completed: true)
+      render json: { status: 'success' }
+    else
+      render json: { status: 'error' }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def goal_params
