@@ -295,6 +295,10 @@ ul > li > div > a{
   color: #3d444c;
 }
 
+.no-link-attrebute {
+  text-decoration: none;
+}
+
 .mountains-container {
   position: relative;
   width: 100%;
