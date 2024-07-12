@@ -823,6 +823,11 @@ causing problems */
   border-radius: 100%;
 }
 
+.trash {
+  border: none;
+  background-color: transparent;
+}
+
 @keyframes dot {
   0% {
     transform: rotate(-90deg);
