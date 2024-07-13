@@ -60,7 +60,7 @@
                   </div>
 
                 <div class="two-elements">
-                  <span id="task_name"> <%= link_to task.name, goal_task_path(@goal, task) %> </span>
+                  <span id="task_name"> <%= link_to task.name, goal_task_path(@goal, task), class: "label-text-color no-link-attrebute" %> </span>
                   <span>
                     <%= button_to goal_task_path(@goal, task), method: :delete,
                         data: { turbo_confirm: "Are you sure?" }, class: "trash" do %>
