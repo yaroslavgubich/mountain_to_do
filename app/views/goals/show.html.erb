@@ -55,7 +55,7 @@
 
                 <div style="display: inline-block; width: 91%;">
                   <div class="two-elements">
-                    <span class="custom-form-label" id="task_deadline"> <%= task.deadline.present? ? task.deadline.strftime("%d %b %Y") : "No deadline" %> </span>
+                    <span class="custom-form-label" id="task_deadline"> <%= link_to task.deadline.strftime("%d %b %Y"), goal_task_path(@goal, task), class: "mountain-label label-text-color no-link-attrebute" %> </span>
                     <span class="time-left-field"> </span>
                   </div>
 

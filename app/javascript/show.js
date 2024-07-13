@@ -58,7 +58,7 @@ function calculateProgress () {
 
     task_end_day = null;
     checkTaskStatus();
-  }, 1000);
+  }, 0);
 }
 
 // Add 0 if day or month date less 10
@@ -117,8 +117,12 @@ function checkTaskStatus() {
 
 }
 
+// Sorage for task end date if user will change mind
+var end_date_storage;
+
 function setTaskCompleated() {
   // document.getElementById("mark_complete").checked = true;
+  end_date_storage = document.getElementById("task_end_date").value;
   document.getElementById("task_end_date").value = (new Date()).getFullYear() +"-"+convertDate((new Date()).getMonth()+1)+"-"+convertDate((new Date()).getDate());
   document.querySelector(".done-btn").style="display:none;";
   document.querySelector(".uncheckt-btn").style="display:inline-block;";
@@ -127,7 +131,7 @@ function setTaskCompleated() {
 
 function setTaskNotCompleated() {
   // document.getElementById("mark_complete").checked = false;
-  document.getElementById("task_end_date").value = (new Date()).getFullYear() +"-"+convertDate((new Date()).getMonth()+1)+"-"+convertDate((new Date()).getDate()+1)
+  document.getElementById("task_end_date").value = end_date_storage;
   document.querySelector(".done-btn").style="display:inline-block;";
   document.querySelector(".uncheckt-btn").style="display:none;";
   calculateProgress();

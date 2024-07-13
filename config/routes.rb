@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resource :profile, only: %i[show update]
 
   resources :goals do
+    member do
+      patch :complete
+    end
     resources :tasks, only: [:edit, :update, :destroy, :create, :new, :show]
   end
 
