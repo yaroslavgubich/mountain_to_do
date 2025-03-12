@@ -13,6 +13,8 @@
 
 .delete-btn {
   display: inline-block;
+  border: none;
+  background-color: transparent;
   width: 6rem;
   height: 6rem;
   background-image: url("Delete_btn.png");
@@ -20,7 +22,7 @@
   background-position: center;
   background-size: contain;
   opacity: 0.8;
-  margin-bottom: 40px;
+  margin-bottom: 45px;
   margin-right: 12px;
 }
 
@@ -106,4 +108,3 @@
   opacity: 0.8;
   margin-bottom: 40px;
 }
-
